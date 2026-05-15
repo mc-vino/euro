@@ -15,7 +15,6 @@
     html { scroll-behavior: smooth; }
     body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px; line-height: 1.7; }
 
-    /* header */
     header { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; padding: 60px 20px; }
     header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 30%, rgba(200,146,58,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 80% 70%, rgba(74,143,168,0.07) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 50% 50%, rgba(212,75,63,0.05) 0%, transparent 60%); }
     .header-date { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 32px; text-transform: uppercase; }
@@ -28,7 +27,6 @@
     .city-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
     .dot-munich { background: var(--munich); } .dot-barcelona { background: var(--barcelona); } .dot-prague { background: var(--prague); }
 
-    /* nav */
     nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; gap: 0; overflow-x: auto; }
     .nav-city { display: flex; align-items: center; gap: 6px; padding: 16px 20px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; user-select: none; }
     .nav-city:hover { color: var(--text); }
@@ -36,7 +34,6 @@
     .nav-city.barcelona { border-color: var(--barcelona); color: var(--barcelona); }
     .nav-city.prague { border-color: var(--prague); color: var(--prague); }
 
-    /* city section */
     .city-section { max-width: 1100px; margin: 0 auto; padding: 80px 24px; display: none; }
     .city-section.active { display: block; }
     .city-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; padding-bottom: 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 16px; }
@@ -44,7 +41,6 @@
     .city-name.munich { color: var(--munich); } .city-name.barcelona { color: var(--barcelona); } .city-name.prague { color: var(--prague); }
     .city-meta { text-align: right; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; }
 
-    /* tabs */
     .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 36px; overflow-x: auto; }
     .tab { padding: 12px 20px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; white-space: nowrap; user-select: none; }
     .tab:hover { color: var(--text); }
@@ -52,7 +48,6 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* cards */
     .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: 24px; transition: border-color 0.2s, transform 0.15s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
     .card:hover { border-color: #3a3a3a; transform: translateY(-1px); }
@@ -70,17 +65,12 @@
     .card-detail { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 11px; color: #4a4a4a; line-height: 1.8; }
     .card-detail span { color: #5a5a5a; }
 
-    /* save button */
-    .save-btn { margin-top: 12px; padding: 8px 16px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; border-radius: 2px; align-self: flex-start; }
-    .save-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .save-btn.saved { border-color: var(--accent); color: var(--accent); background: rgba(181,164,138,0.1); }
-    .save-btn.must { border-color: var(--munich); color: var(--munich); }
     .priority-toggle { display: flex; gap: 8px; margin-top: 8px; }
-    .priority-btn { padding: 4px 10px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 9px; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
+    .priority-btn { padding: 6px 12px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 9px; cursor: pointer; border-radius: 2px; transition: all 0.2s; letter-spacing: 0.1em; text-transform: uppercase; }
+    .priority-btn:hover { border-color: var(--accent); color: var(--accent); }
     .priority-btn.active-must { border-color: var(--munich); color: var(--munich); background: rgba(200,146,58,0.1); }
     .priority-btn.active-opt { border-color: #5a8a5a; color: #7cc47c; background: rgba(100,180,100,0.1); }
 
-    /* event banner */
     .event-banner { background: var(--surface); border: 1px solid rgba(212,75,63,0.3); border-left: 3px solid var(--barcelona); padding: 20px 24px; margin-bottom: 16px; border-radius: 2px; }
     .event-banner.munich-ev { border-left-color: var(--munich); border-color: rgba(200,146,58,0.3); }
     .event-banner.prague-ev { border-left-color: var(--prague); border-color: rgba(74,143,168,0.3); }
@@ -88,35 +78,26 @@
     .event-banner .ev-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 10px; letter-spacing: 0.08em; }
     .event-banner p { color: var(--muted); font-size: 15px; }
 
-    /* tips grid */
     .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
     .tip-card { background: var(--surface); border: 1px solid var(--border); padding: 20px; border-radius: 2px; }
     .tip-icon { font-size: 24px; margin-bottom: 10px; display: block; }
     .tip-card h4 { font-size: 16px; font-weight: 400; margin-bottom: 8px; }
     .tip-card p { font-size: 14px; color: var(--muted); }
 
-    /* itinerary */
-    .itinerary { background: var(--surface); border: 1px solid var(--border); padding: 28px; border-radius: 2px; }
-    .itin-day { display: flex; gap: 20px; margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
-    .itin-day:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .itin-time { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 70px; padding-top: 3px; letter-spacing: 0.05em; }
-    .itin-content h4 { font-size: 17px; font-weight: 400; margin-bottom: 4px; }
-    .itin-content p { font-size: 14px; color: var(--muted); }
-
-    /* my route panel */
-    .my-route-panel { position: fixed; top: 50%; right: -400px; transform: translateY(-50%); width: 380px; max-height: 80vh; background: var(--surface); border: 1px solid var(--border); z-index: 200; transition: right 0.3s ease; overflow-y: auto; padding: 20px; border-radius: 4px 0 0 4px; }
+    .my-route-panel { position: fixed; top: 50%; right: -420px; transform: translateY(-50%); width: 400px; max-height: 80vh; background: var(--surface); border: 1px solid var(--border); z-index: 200; transition: right 0.3s ease; overflow-y: auto; padding: 20px; border-radius: 4px 0 0 4px; }
     .my-route-panel.open { right: 0; }
     .route-toggle { position: fixed; right: 20px; bottom: 30px; z-index: 201; background: var(--surface); border: 1px solid var(--accent); color: var(--accent); padding: 12px 18px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
     .route-toggle:hover { background: rgba(181,164,138,0.1); }
-    .route-item { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
-    .route-item strong { display: block; color: var(--accent); font-size: 11px; letter-spacing: 0.1em; }
-    .route-item .remove-item { float: right; cursor: pointer; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; }
+    .route-group { margin-bottom: 20px; }
+    .route-group h4 { font-size: 14px; font-weight: 400; color: var(--accent); margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px; letter-spacing: 0.05em; }
+    .route-item { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; display: flex; align-items: flex-start; justify-content: space-between; }
+    .route-item .item-text { flex: 1; }
+    .route-item .remove-item { cursor: pointer; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; margin-left: 8px; transition: color 0.2s; }
     .route-item .remove-item:hover { color: #d44b3f; }
     .route-item.must-item { border-left: 2px solid var(--munich); padding-left: 10px; }
     .route-empty { color: var(--muted); text-align: center; padding: 40px 20px; font-style: italic; }
 
-    /* footer */
-    footer { text-align: center; padding: 60px 24px; color: var(--muted); font-size: 13px; font-family: 'DM Mono', monospace; border-top: 1px solid var(--border); letter-spacing: 0.08em; margin-top: 60px; }
+    footer { text-align: center; padding: 60px 24px; color: var(--muted); font-size: 13px; font-family: 'DM Mono', monospace; border-top: 1px solid var(--border); margin-top: 60px; }
 
     .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
     .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
@@ -124,7 +105,6 @@
     @media (max-width: 600px) {
       .city-header { flex-direction: column; align-items: flex-start; }
       .city-meta { text-align: left; }
-      .itin-day { flex-direction: column; gap: 6px; }
       .my-route-panel { width: 100%; right: -100%; }
     }
   </style>
@@ -148,7 +128,6 @@
   <span class="nav-city prague" onclick="showCity('prague')"><span class="dot dot-prague"></span> Прага</span>
 </nav>
 
-<!-- ══════════════════ MUNICH ══════════════════ -->
 <section id="munich" class="city-section active">
   <div class="city-header"><h2 class="city-name munich">Мюнхен</h2><div class="city-meta">6–7 августа 2026<br>Среда–Четверг · 2 дня</div></div>
   <div class="tabs" id="munich-tabs">
@@ -167,7 +146,6 @@
   <div class="tab-content" id="munich-tips"></div>
 </section>
 
-<!-- ══════════════════ BARCELONA ══════════════════ -->
 <section id="barcelona" class="city-section">
   <div class="city-header"><h2 class="city-name barcelona">Барселона</h2><div class="city-meta">8–10 августа 2026<br>Суббота–Понедельник · 3 дня</div></div>
   <div class="tabs" id="barcelona-tabs">
@@ -186,7 +164,6 @@
   <div class="tab-content" id="barcelona-tips"></div>
 </section>
 
-<!-- ══════════════════ PRAGUE ══════════════════ -->
 <section id="prague" class="city-section">
   <div class="city-header"><h2 class="city-name prague">Прага</h2><div class="city-meta">11–12 августа 2026<br>Вторник–Среда · 2 дня</div></div>
   <div class="tabs" id="prague-tabs">
@@ -205,380 +182,374 @@
   <div class="tab-content" id="prague-tips"></div>
 </section>
 
-<!-- MY ROUTE PANEL -->
 <button class="route-toggle" onclick="toggleRoutePanel()">📋 Мой маршрут</button>
 <div class="my-route-panel" id="routePanel">
   <h3 style="margin-bottom:16px;font-weight:300;">Мой маршрут</h3>
-  <div id="routeList" class="route-empty">Пока ничего не выбрано. Нажимайте «В избранное» на карточках.</div>
+  <div id="routeList" class="route-empty">Пока ничего не выбрано. Нажимайте «Идем» или «Опционально» на карточках.</div>
   <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
     <button onclick="exportRoute()" style="padding:6px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;">Экспорт</button>
     <button onclick="importRoutePrompt()" style="padding:6px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;">Импорт</button>
-    <button onclick="clearRoute()" style="padding:6px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;">Очистить</button>
+    <button onclick="clearRoute()" style="padding:6px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;">Очистить всё</button>
   </div>
 </div>
 
 <footer>Мюнхен · Барселона · Прага · Август 2026<br>Проверяйте актуальное расписание мероприятий ближе к дате поездки</footer>
 
 <script>
-// ─────────────────── DATA ───────────────────
-const data = {
-  munich: {
-    events: [
-      {badge:'badge-event',title:'Munich Open Air Summer — Vivaldi «Времена года»',desc:'Концерт во дворе фонтанов Резиденции под открытым небом. Одно из самых атмосферных летних мест Мюнхена — роскошный ренессансный двор, классика, всё бесплатно. Приходите заранее, места занимают быстро.',detail:'7 АВГУСТА · Brunnenhof, Residenz · 19:30 · Бесплатно'},
-      {badge:'badge-event',title:'Фестиваль фонтанов на Виктуалиенмаркт',desc:'Ежегодный цеховой праздник мюнхенских садовников с 1638 года. Духовые оркестры на Viktualienmarkt, шествие и церемония в Hofbräuhaus. Абсолютно локальное событие.',detail:'7 АВГУСТА · Viktualienmarkt · днём · Бесплатно'},
-      {badge:'badge-event',title:'Theatron Musiksommer — бесплатные концерты',desc:'Амфитеатр у олимпийского озера, вмещает 2000 человек, вход всегда бесплатный. Летом каждые несколько дней — концерты разных жанров.',detail:'АВГУСТ · Olympiapark · Бесплатно'},
-      {badge:'badge-event',title:'free&easy Festival',desc:'18 дней бесплатных концертов, вечеринок, кабаре и политических дебатов на площадке Backstage — три крытые сцены и открытый двор.',detail:'АВГУСТ · Backstage · Бесплатно'}
-    ],
-    must: [
-      {badge:'badge-must',title:'Мариенплац и Фрауэнкирхе',desc:'Главная площадь, Новая Ратуша с глокеншпилем (в 11:00 и 12:00), башни Фрауэнкирхе с лифтом наверх за €7. Виды — 360°.',detail:'Совет: поднимитесь в башню утром до 10:00 — ни очередей, ни групп.'},
-      {badge:'badge-must',title:'Английский сад (Englischer Garten)',desc:'Крупнейший городской парк мира. Речная волна (Eisbach) с сёрферами — уникальный городской феномен.',detail:'Бесплатно · Nude sunbathing зона — норма для Мюнхена'},
-      {badge:'badge-must',title:'Резиденция (Münchner Residenz)',desc:'Крупнейший городской дворцовый комплекс Германии — 10 дворов, 130 залов. Антиквариум — один из красивейших ренессансных залов севернее Альп.',detail:'€10 · Двор фонтанов для концертов — бесплатно'},
-      {badge:'badge-must',title:'Виктуалиенмаркт (Viktualienmarkt)',desc:'Старейший продовольственный рынок города, работает каждый день. Реально живой рынок с пивным садом в центре.',detail:'Пн–Сб · лучшее — раннее утро с 7:00'},
-      {badge:'badge-must',title:'Немецкий музей (Deutsches Museum)',desc:'Крупнейший технический музей мира — подводная лодка, шахта, авиация. Рассчитывайте минимум на полдня.',detail:'€15 · Открыт с 9:00'},
-      {badge:'badge-must',title:'Пинакотеки',desc:'Три музея рядом: Alte (старые мастера), Neue (XIX в.), Moderne (XX–XXI). Собрание Рубенса — одно из лучших в мире.',detail:'Воскресенье = €1 (но вы в ср/чт)'}
-    ],
-    niche: [
-      {badge:'badge-niche',title:'Eisbach — городская волна',desc:'Стоячая волна на канале в Английском саду. Местные сёрферы круглый год — феномен, который не встретишь больше нигде в мире.',detail:'Бесплатно · Лучше ранним утром'},
-      {badge:'badge-niche',title:'Район Хайдхаузен (Haidhausen)',desc:'«Французский квартал» — тихие улицы 1870-х, независимые кофейни, винные бары, антикварные магазины.',detail:'Wörthstraße — визитная карточка'},
-      {badge:'badge-niche',title:'Мюнхенский трамвай #19',desc:'Один из старейших городских маршрутов — проезд сквозь районы, которые не попадают в путеводители.',detail:'Цена обычного билета — пройдёт весь маршрут'},
-      {badge:'badge-niche',title:'Шванталерхёэ (Kreativquartier)',desc:'Бывшая промзона, ставшая модным креативным кластером с кофейнями, галереями и уличным искусством.',detail:'Граффити под мостом Доннерсбергер'},
-      {badge:'badge-niche',title:'Хофгартен (Hofgarten)',desc:'Тихие исторические сады во внутренних дворах Старого города, скрытые за фасадами.',detail:'Бесплатно'},
-      {badge:'badge-niche',title:'Мюллеровские народные бани',desc:'Одно из старейших общественных крытых банных заведений Европы с прекрасной архитектурой.',detail:'Müllersches Volksbad'},
-      {badge:'badge-niche',title:'Кладбище Waldfriedhof',desc:'Лесное кладбище с уникальной архитектурой рубежа XIX–XX вв. Тихое место с деревьями и искусством.',detail:'Похоронен Макс Планк'}
-    ],
-    food: [
-      {badge:'badge-food',title:'Hofbräuhaus',desc:'Легендарная пивная. Литровая кружка, Weißwurst с горчицей и брецелем — обязательный ритуал.',detail:'Туристическое, но аутентичное'},
-      {badge:'badge-food',title:'Weißwurst на Viktualienmarkt',desc:'Утренняя белая телячья колбаска с пивом — баварская классика. Weißwurst едят только до 12:00.',detail:'Лучшая — у стойки Standl 21'},
-      {badge:'badge-food',title:'Wirtshaus in der Au',desc:'Лучшие кнедли города и пивоварня с нефильтрованным Dunkel прямо на месте.',detail:'Столик лучше резервировать'},
-      {badge:'badge-food',title:'Augustiner-Keller',desc:'5000 мест под каштанами — один из старейших пивных садов горожан. Пиво из деревянной бочки.',detail:'Arnulfstraße 52 · вечером до 23:00'},
-      {badge:'badge-food',title:'Dallmayr — гастрономический универмаг',desc:'Легендарный деликатесный магазин с 1700 года. Кофе, паштеты, баварские сыры.',detail:'Буфет наверху — отличный обед'},
-      {badge:'badge-food',title:'Schmalznudel — «Пончики на рассвете»',desc:'Крошечная пекарня у рынка, открывается в 5 утра. Schmalznudeln — мюнхенские пончики в жире.',detail:'Prälat-Zistl-Str. 8 · только наличные'}
-    ],
-    outside: [
-      {badge:'badge-out',title:'Нойшванштайн (Neuschwanstein)',desc:'2ч на поезде. Ключевой лайфхак: купите билеты онлайн за 2 дня.',detail:'Поезд Мюнхен–Фюссен €25 туда-обратно · Замок €18'},
-      {badge:'badge-out',title:'Штарнбергское озеро',desc:'35 минут на S-Bahn S6. Баварские Альпы в отражении, купание, паромы между деревнями.',detail:'Входит в зону A/B городского транспорта'},
-      {badge:'badge-out',title:'Регенсбург + Вальхалла',desc:'1.5ч на поезде. Средневековый центр UNESCO и греческий храм-пантеон над Дунаем.',detail:'Один из самых сохранившихся средневековых городов Германии'},
-      {badge:'badge-out',title:'Гармиш-Партенкирхен + Цугшпитце',desc:'1.5ч на поезде. Самая высокая точка Германии (2962м), фуникулёр, горное озеро Айбзее.',detail:'Цугшпитце ~€60 · Стоит каждого евро'}
-    ],
-    tips: [
-      {badge:'badge-tip',title:'CityTourCard или IsarCard',desc:'На 2 дня — CityTourCard (€28) включает весь транспорт M-зоны + скидки в 80+ музеях и ресторанах.'},
-      {badge:'badge-tip',title:'Bayern-Ticket',desc:'€29 на 1 человека или €52 на 5 — весь день по всей Баварии на региональных поездах.'},
-      {badge:'badge-tip',title:'Пиво в пивном саду: своя еда разрешена',desc:'В большинстве баварских пивных садов официально разрешено приносить свою еду (Brotzeit).'},
-      {badge:'badge-tip',title:'Купание в Изаре — бесплатно',desc:'Река Изар прямо в городе. Зоны для купания: Flaucher, Tierpark-Abschnitt. Чистейшая горная вода.'},
-      {badge:'badge-tip',title:'Аэропорт: S-Bahn',desc:'S-Bahn S1/S8 до центра — €13.60, 40 мин. Такси ~€70. S-Bahn — оптимум.'}
-    ]
-  },
-  barcelona: {
-    events: [
-      {badge:'badge-event',title:'Brunch Electronik Festival 2026',desc:'Три дня электронной музыки у моря: Eric Prydz, Paul Kalkbrenner, Jamie Jones, The Blaze, Mind Against. Дневной формат (15:00–3:00), sea breeze, фудкорт.',detail:'7–9 АВГУСТА · Parc del Fòrum · €70–130 · Билеты онлайн'},
-      {badge:'badge-event',title:'Festival del Grec / Barcelona Summer Festival',desc:'200+ концертов по 6 знаковым площадкам: Palau de la Música, Teatro Grec на Монжуике, Tarantos (фламенко).',detail:'Август–Сентябрь · Разные цены'},
-      {badge:'badge-event',title:'Барселона — Мировая столица архитектуры 2026',desc:'Статус UNESCO на весь год. 1500+ мероприятий — выставки, туры, открытые дни в зданиях, которые обычно закрыты.',detail:'Большинство бесплатно · Павильон Мис ван дер Роэ: 1-е вс месяца — бесплатно'},
-      {badge:'badge-event',title:'Ночной Сапсерфинг',desc:'До конца августа можно покататься на светящихся сапбордах у пляжа Барселонета.',detail:'Вечернее развлечение'}
-    ],
-    must: [
-      {badge:'badge-must',title:'Саграда Фамилия',desc:'Билеты только онлайн заранее — в августе за 2–3 недели. Берите билет с башнями — вид сверху другой мир.',detail:'€26–38 · Утренний свет (9–11) — лучшее время'},
-      {badge:'badge-must',title:'Парк Гуэль',desc:'Основная монументальная зона — по билетам (€10). Остальная часть парка — бесплатно и без туристов.',detail:'Верхняя часть парка бесплатна — виды лучше'},
-      {badge:'badge-must',title:'Квартал Готика и Эль-Борн',desc:'Барселонский Собор, Roman ruins под городом (MUHBA). Эль-Борн — самый атмосферный район.',detail:'MUHBA Roman ruins под Plaça del Rei — €7'},
-      {badge:'badge-must',title:'Монжуик: замок + фонтан',desc:'Замок на холме — виды на порт и город. Фонтан Montjuïc: светомузыкальные шоу в пятницу и субботу с 21:30.',detail:'Фонтан по выходным · Фуникулёр на замок'},
-      {badge:'badge-must',title:'La Pedrera (Casa Milà) + ночная версия',desc:'«La Pedrera Night Experience» (пт–сб до полуночи) с видом на Барселону с крыши, живой музыкой и бокалом cava.',detail:'Day €28 · Night Experience €39'}
-    ],
-    niche: [
-      {badge:'badge-niche',title:'Bunkers del Carmel — рассвет/закат',desc:'Бункеры зенитной артиллерии Гражданской войны на холме — лучший незаплаченный вид на Барселону 360°.',detail:'Бесплатно · Подъём ~25 мин пешком'},
-      {badge:'badge-niche',title:'Район Побленоу (Poblenou)',desc:'Бывший промышленный район — теперь Barcelona\'s Brooklyn. Граффити, галереи в заводах, кофейни.',detail:'Rambla del Poblenou — местная Рамбла без туристов'},
-      {badge:'badge-niche',title:'Павильон Мис ван дер Роэ',desc:'Один из главных шедевров модернизма. Первое воскресенье месяца — бесплатно (8 авг — первое воскресенье).',detail:'8 августа = БЕСПЛАТНО · €12 в обычные дни'},
-      {badge:'badge-niche',title:'Recinte Modernista de Sant Pau',desc:'Больница в стиле Art Nouveau — архитектурный шедевр, менее известный чем Саграда, но не менее удивительный. UNESCO.',detail:'€18 · 10 мин от Саграды Фамилии'},
-      {badge:'badge-niche',title:'Парк Лабиринт Орта',desc:'Старейший парк города на окраине с настоящим кипарисовым лабиринтом. Туристы туда доезжают редко.',detail:'Parc del Laberint d\'Horta'},
-      {badge:'badge-niche',title:'Mirador del Passeig de l\'Escullera',desc:'Секретная смотровая на 400-метровом волноломе. Только шум волн, море и закаты.',detail:'Бесплатно'},
-      {badge:'badge-niche',title:'Дворик Casa de l\'Ardiaca',desc:'Тихий внутренний дворик с фонтаном и черепахами в сердце Готического квартала.',detail:'Бесплатно'},
-      {badge:'badge-niche',title:'Рынок Энканты (Encants Vells)',desc:'Блошиный рынок под зеркальным навесом — металлическая конструкция отражает город сверху.',detail:'Пн, Ср, Пт, Сб с 9:00'},
-      {badge:'badge-niche',title:'Культурный центр El Born',desc:'Бывший чугунный рынок, внутри которого нашли руины Барселоны 1700-х годов. Бесплатное открытое пространство.',detail:'Бесплатно'}
-    ],
-    food: [
-      {badge:'badge-food',title:'Рынок Santa Caterina',desc:'Отличная альтернатива переполненной Бокерии. Необычная волнистая крыша, шикарные локальные продукты.',detail:'Avinguda de Francesc Cambó 16 · Цены вдвое ниже Бокерии'},
-      {badge:'badge-food',title:'Пинчос в Эль-Борне',desc:'Лучшие тапас-бары: El Xampanyet (cava и анчоусы), Bar del Pla, El Asador de Aranda.',detail:'Не садитесь у стойки — дешевле стоя'},
-      {badge:'badge-food',title:'Вермут — утренний ритуал',desc:'В воскресенье с 11:00 — всё Барселона на аперитиве с вермутом. Bar Calders, Casa Mariona, El Xampanyet.',detail:'Это не туристический ритуал — это жизнь'},
-      {badge:'badge-food',title:'Gelaaati di Marco',desc:'Парадоксально лучшее мороженое в Барселоне — итальянец на C/ de la Llibreteria. Без Instagram-хайпа.',detail:'C/ de la Llibreteria'},
-      {badge:'badge-food',title:'La Cova Fumada',desc:'Изобрела бомбас (картофельные шарики). Легенда Barceloneta. Кэш онли, без вывески.',detail:'Carrer del Baluard 56 · Пн–Пт, открытие 9:00'},
-      {badge:'badge-food',title:'Bar Marsella',desc:'Старейший бар, открыт с 1820. Absenta с мёдом.',detail:'C/ dels Escudellers Blancs 1'}
-    ],
-    outside: [
-      {badge:'badge-out',title:'Монсеррат (Montserrat)',desc:'1ч на поезде. «Зазубренная гора» с монастырём Бенедиктинцев и хором La Escolania (поёт ежедневно в 13:00).',detail:'Поезд + фуникулёр FGC ~€32 · Монастырь бесплатно'},
-      {badge:'badge-out',title:'Коста-Брава — каякинг',desc:'Дикая скалистая береговая линия в 80 км. Однодневные каяк-туры с морскими пещерами и бухтами без дорог.',detail:'6-8ч · Бронировать заранее'},
-      {badge:'badge-out',title:'Ситжес (Sitges)',desc:'35 мин на поезде. Красивый приморский городок с отличным пляжем и архитектурой модернизма.',detail:'Менее известен, чем популярные курорты'}
-    ],
-    tips: [
-      {badge:'badge-tip',title:'Barcelona Card vs T-Casual',desc:'3 дня = €50 — неограниченный транспорт + скидки. T-Casual (10 поездок, ~€12) — выгоднее для большинства.'},
-      {badge:'badge-tip',title:'Жара: режим августа',desc:'+32–35°C. Сиеста реальна: 14:00–17:00 — время кофе и тени. Сложные маршруты до 13:00 и после 18:00.'},
-      {badge:'badge-tip',title:'Пляжи: не Barceloneta',desc:'Mar Bella (тише), Bogatell (чище, местные), Nova Icaria — более спокойные альтернативы в 10 мин.'},
-      {badge:'badge-tip',title:'Карманники — реальная проблема',desc:'Лас-Рамблас, Бокерия, метро Л1/Л3 — зоны риска. Нательный кошелёк или разделите деньги.'},
-      {badge:'badge-tip',title:'Время еды',desc:'Обед 14:00–16:00, ужин с 21:00. Menu del día (обед) — 3 блюда за €12–15.'},
-      {badge:'badge-tip',title:'T-Casual и аэропорт',desc:'T-Casual работает на всё кроме аэропорта. Аэропорт: специальный билет €4.90 или Aerobus €6.75.'},
-      {badge:'badge-tip',title:'Вода из фонтанов',desc:'В городе сотни питьевых фонтанчиков с хорошей водой. Носите многоразовую бутылку.'}
-    ]
-  },
-  prague: {
-    events: [
-      {badge:'badge-event',title:'Prague Proms 2026',desc:'Сезонный фестиваль классики, джаза, киномузыки и кроссовера. Площадки: Obecní dům, церковь Св. Симона и Иуды, The Loop Jazz Club.',detail:'Август–Сентябрь · Разные площадки'},
-      {badge:'badge-event',title:'Letní Letná Festival',desc:'Фестиваль нового цирка, уличного театра и акробатики в парке Летна. Стартует 12 августа красочным парадом.',detail:'12 АВГУСТА · Letná Park'},
-      {badge:'badge-event',title:'Respect Festival — мировая музыка',desc:'Открытый фестиваль на острове Штваница. Мировая музыка, альтернативные звуки.',detail:'Лето 2026 · Štvanice Island'},
-      {badge:'badge-event',title:'Signal SPACE — постоянная световая выставка',desc:'Постоянная инсталляция в старом рыночном зале Праги. Современное световое искусство в историческом пространстве.',detail:'Открыто 2025–2026'},
-      {badge:'badge-event',title:'Выставка «Harry Potter: The Exhibition»',desc:'С 6 августа в комплексе PVA Expo. Подлинные костюмы, реквизит и полное погружение в волшебный мир.',detail:'PVA Expo · Билеты онлайн'}
-    ],
-    must: [
-      {badge:'badge-must',title:'Пражский Град — ранним утром',desc:'Открывается в 6:00 — территория бесплатна. Собор Св. Вита, Злата улочка, виды на Малу Страну. До 9 утра практически никого.',detail:'Вход на территорию бесплатно · Интерьеры от €10'},
-      {badge:'badge-must',title:'Вышеград (Vyšehrad)',desc:'Старше Пражского Града — и почти без туристов. Кладбище с могилами Дворжака, Сметаны, Мухи.',detail:'Бесплатно · 15 мин от центра на метро'},
-      {badge:'badge-must',title:'Астрономические часы (Orloj) + башня',desc:'Часы работают 9:00–23:00, бой каждый час. Башня Старой Ратуши — лучший вид на Старый Город.',detail:'Башня: €6 · Часы — бесплатно снаружи'},
-      {badge:'badge-must',title:'Карлов мост',desc:'Обязательно, но только в 6–7 утра. Тогда это мистическая пустая средневековая переправа.',detail:'Бесплатно'},
-      {badge:'badge-must',title:'Еврейский квартал (Josefov)',desc:'Шесть синагог и старейшее действующее еврейское кладбище Европы. Покупайте комбо-билет.',detail:'Комбо-билет €20 · Внешние улицы бесплатно'}
-    ],
-    niche: [
-      {badge:'badge-niche',title:'Speculum Alchemiae — подземная лаборатория алхимика',desc:'Настоящая алхимическая лаборатория XVI века, обнаруженная во время наводнения 2002 года. Подземные туры.',detail:'Haštálská 1 · Экскурсия ~€15 · Бронировать'},
-      {badge:'badge-niche',title:'Кинетическая голова Кафки (David Černý)',desc:'11-метровая скульптура из 42 вращающихся слоёв. Снаружи торгового центра Quadrio.',detail:'V Štěpánské 633/49 · Бесплатно'},
-      {badge:'badge-niche',title:'Невидимая выставка (Invisible Exhibition)',desc:'Слепой гид ведёт вас через темноту — один час в абсолютной темноте, моделирующей мир незрячих.',detail:'~€14 · Бронировать онлайн'},
-      {badge:'badge-niche',title:'Sapa — вьетнамский рынок',desc:'Один из крупнейших вьетнамских рынков за пределами Вьетнама. Лучший фо в Центральной Европе.',detail:'Метро + автобус ~30 мин от центра'},
-      {badge:'badge-niche',title:'Холодная война — бункер под Вацлавской площадью',desc:'Ядерное убежище под главной площадью Праги — хирургические комнаты, шпионаж.',detail:'400 CZK (~€16) · Вацлавская пл.'},
-      {badge:'badge-niche',title:'DOX — Центр современного искусства',desc:'Лучший в Праге центр contemporary art с инсталляциями в бывшем заводе. Внутри — дирижабль-чердак Gulliver.',detail:'Poupětova 1 · Голешовице'},
-      {badge:'badge-niche',title:'Вилла Müller — Адольф Лоос, 2026',desc:'Важнейший образец модернизма только что вновь открылась после реставрации.',detail:'Экскурсия обязательна · Бронировать'},
-      {badge:'badge-niche',title:'Улица Новый Свет (Nový Svět)',desc:'Идиллическая улочка у Пражского Града с яркими домиками и спокойной деревенской атмосферой.',detail:'Бесплатно'},
-      {badge:'badge-niche',title:'U Sudu — подземный винный бар',desc:'Выглядит как обычное заведение, но внутри — гигантский подземный средневековый лабиринт из пещер.',detail:'Старый Город'}
-    ],
-    food: [
-      {badge:'badge-food',title:'Polední menu — обеденное меню',desc:'Будний день 11:00–14:00: суп + главное блюдо + напиток за 150–200 CZK (~€6–8). Ищите знак «Polední menu» в окне.',detail:'Лучший способ попробовать чешскую кухню'},
-      {badge:'badge-food',title:'Lokál — пивная с непастеризованным Pilsner',desc:'Pilsner Urquell прямо из бочки, нефильтрованный. Свíčková на сливках, утопенец.',detail:'Dlouhá 33 · Популярно — резервировать'},
-      {badge:'badge-food',title:'Kantýna — мясной ресторан в бывшем банке',desc:'Подходишь к витрине мясника, выбираешь кусок сырого мяса, его взвешивают и готовят при тебе.',detail:'Формат идеален для контроля порций'},
-      {badge:'badge-food',title:'Větrník — чешский «cream puff»',desc:'Чешский заварной пирожок с двумя кремами (ванильный + карамельный) и карамельной глазурью.',detail:'Gardens Restaurant — тихая легенда'},
-      {badge:'badge-food',title:'Pivovarský klub — сотни сортов пива',desc:'Крафтовый пивной бар с более чем 50 кранами и 200 бутылками. Всё чешское.',detail:'Křižíkova 17 · Жижков'},
-      {badge:'badge-food',title:'U Medvídků — пивоварня с 1466 года',desc:'Одна из старейших пивоварен Праги. X-Beer 33° — один из самых крепких лагеров в мире.',detail:'Na Perštýně 7 · Старый Город'}
-    ],
-    outside: [
-      {badge:'badge-out',title:'Кутна Гора (Kutná Hora)',desc:'1ч на поезде. Знаменитая Kostnice — часовня из человеческих костей (40 000+ скелетов). Готический собор Св. Варвары.',detail:'Поезд €5 · Костница €5 · Полдня'},
-      {badge:'badge-out',title:'Телч (Telč) — UNESCO',desc:'2.5ч. Идеально сохранившийся ренессансный городок с одной из красивейших площадей Европы.',detail:'Почти нет туристов несмотря на статус UNESCO'},
-      {badge:'badge-out',title:'Карлштейн (Karlštejn)',desc:'40 мин на поезде. Готический замок XIV века на скале — изначально хранилище коронных регалий.',detail:'Поезд €3 · Замок €15'}
-    ],
-    tips: [
-      {badge:'badge-tip',title:'CZK vs EUR',desc:'Платите в кронах, не в евро — курс обмена в ресторанах грабительский. Снимайте в банкоматах ČSOB или Komerční banka.'},
-      {badge:'badge-tip',title:'Пиво дешевле воды',desc:'Пиво в пивных — 40–60 CZK (~€1.6–2.4). Бутылированная вода в туристических кафе — иногда дороже.'},
-      {badge:'badge-tip',title:'Prague Card или обычный билет',desc:'Для 2 дней обычно не окупается — лучше отдельные билеты и суточная карточка транспорта (110 CZK).'},
-      {badge:'badge-tip',title:'Трамвай #22 — лучший городской вид',desc:'Проходит через Малу Страну и мимо всех главных достопримечательностей. Цена — €1.'},
-      {badge:'badge-tip',title:'Пражский Град в 6 утра',desc:'Территория открыта с 6:00. Карлов мост — в 6–7:00. Утренние 2 часа в Праге — другой город.'},
-      {badge:'badge-tip',title:'Классическая музыка — дёшево',desc:'Прага — один из лучших городов для живой классики за €10–25. Ищите на GoOut.cz.'},
-      {badge:'badge-tip',title:'Приложение PID Lítačka',desc:'Скачайте для покупки билетов на все виды транспорта — не придется искать автоматы.'}
-    ]
-  }
-};
-
-// ─────────────────── RENDER ───────────────────
-function renderCity(city) {
-  Object.keys(data[city]).forEach(cat => {
-    const container = document.getElementById(city + '-' + cat);
-    if (!container) return;
-    let html = '';
-    if (cat === 'events') {
-      html += '<div class="section-label">События</div>';
-      data[city][cat].forEach(item => {
-        html += `<div class="event-banner ${city === 'munich' ? 'munich-ev' : city === 'prague' ? 'prague-ev' : ''}">
-          <div class="ev-meta">${item.detail || ''}</div>
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
-          <button class="save-btn" onclick="toggleSave('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}')" data-id="${city}-${cat}-${item.title}">☆ В избранное</button>
-          <div class="priority-toggle">
-            <button class="priority-btn must-btn" onclick="setPriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','must')">Обязательно</button>
-            <button class="priority-btn opt-btn" onclick="setPriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','optional')">Опционально</button>
-          </div>
-        </div>`;
-      });
-    } else if (cat === 'tips') {
-      html += '<div class="section-label">Лайфхаки и советы</div><div class="tips-grid">';
-      data[city][cat].forEach(item => {
-        html += `<div class="tip-card">
-          <span class="tip-icon">💡</span>
-          <h4>${item.title}</h4>
-          <p>${item.desc}</p>
-          <button class="save-btn" onclick="toggleSave('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','','${item.badge}')" data-id="${city}-${cat}-${item.title}">☆ В избранное</button>
-        </div>`;
-      });
-      html += '</div>';
-    } else {
-      html += '<div class="section-label">' + {must:'Обязательные места',niche:'Нишевое и нетуристическое',food:'Еда и напитки',outside:'Окрестности'}[cat] + '</div><div class="cards">';
-      data[city][cat].forEach(item => {
-        html += `<div class="card">
-          <span class="card-badge ${item.badge}">${item.badge.replace('badge-','').toUpperCase()}</span>
-          <h3>${item.title}</h3>
-          <p>${item.desc}</p>
-          ${item.detail ? '<div class="card-detail"><span>'+item.detail+'</span></div>' : ''}
-          <button class="save-btn" onclick="toggleSave('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}')" data-id="${city}-${cat}-${item.title}">☆ В избранное</button>
-          <div class="priority-toggle">
-            <button class="priority-btn must-btn" onclick="setPriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','must')">Обязательно</button>
-            <button class="priority-btn opt-btn" onclick="setPriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','optional')">Опционально</button>
-          </div>
-        </div>`;
-      });
-      html += '</div>';
+  const data = {
+    munich: {
+      events: [
+        {badge:'badge-event',title:'Munich Open Air Summer — Vivaldi «Времена года»',desc:'Концерт во дворе фонтанов Резиденции под открытым небом. Приходите заранее.',detail:'7 АВГУСТА · Brunnenhof, Residenz · 19:30 · Бесплатно'},
+        {badge:'badge-event',title:'Фестиваль фонтанов на Виктуалиенмаркт',desc:'Ежегодный праздник садовников с 1638 года. Духовые оркестры, шествие.',detail:'7 АВГУСТА · Viktualienmarkt · днём · Бесплатно'},
+        {badge:'badge-event',title:'Theatron Musiksommer',desc:'Бесплатные концерты в амфитеатре у олимпийского озера.',detail:'АВГУСТ · Olympiapark · Бесплатно'},
+        {badge:'badge-event',title:'free&easy Festival',desc:'18 дней бесплатных концертов и вечеринок на площадке Backstage.',detail:'АВГУСТ · Backstage · Бесплатно'}
+      ],
+      must: [
+        {badge:'badge-must',title:'Мариенплац и Фрауэнкирхе',desc:'Главная площадь, глокеншпиль (11:00 и 12:00), башня с видом за €7.',detail:'Подъем утром — без очередей.'},
+        {badge:'badge-must',title:'Английский сад и Eisbach',desc:'Крупнейший парк мира с уникальной речной волной для сёрфинга.',detail:'Бесплатно · Nude sunbathing — норма'},
+        {badge:'badge-must',title:'Резиденция Виттельсбахов',desc:'130 залов, Антиквариум, двор фонтанов.',detail:'€10 · Двор фонтанов для концертов — бесплатно'},
+        {badge:'badge-must',title:'Виктуалиенмаркт',desc:'Живой рынок с пивным садом в центре.',detail:'Пн–Сб · лучшее утро с 7:00'},
+        {badge:'badge-must',title:'Немецкий музей',desc:'Крупнейший технический музей мира.',detail:'€15 · Открыт с 9:00'},
+        {badge:'badge-must',title:'Пинакотеки',desc:'Alte Pinakothek (старые мастера), Neue, Moderne.',detail:'В воскресенье — €1 (вы в ср/чт)'}
+      ],
+      niche: [
+        {badge:'badge-niche',title:'Eisbach — городская волна',desc:'Стоячая волна, сёрферы круглый год.',detail:'Бесплатно · ранним утром'},
+        {badge:'badge-niche',title:'Хайдхаузен',desc:'Тихие улицы, кофейни, винные бары.',detail:'Wörthstraße — главная'},
+        {badge:'badge-niche',title:'Трамвай #19',desc:'Маршрут через нетуристические районы.',detail:'Обычный билет'},
+        {badge:'badge-niche',title:'Шванталерхёэ',desc:'Креативный кластер с граффити.',detail:'Под мостом Доннерсбергер'},
+        {badge:'badge-niche',title:'Хофгартен',desc:'Скрытые сады во дворах Старого города.',detail:'Бесплатно'},
+        {badge:'badge-niche',title:'Мюллеровские бани',desc:'Старинные общественные бани.',detail:'Müllersches Volksbad'},
+        {badge:'badge-niche',title:'Waldfriedhof',desc:'Лесное кладбище с архитектурой и могилами учёных.',detail:'Похоронен Макс Планк'}
+      ],
+      food: [
+        {badge:'badge-food',title:'Hofbräuhaus',desc:'Легендарная пивная.',detail:'Туристическое, но аутентичное'},
+        {badge:'badge-food',title:'Weißwurst на Viktualienmarkt',desc:'Белая колбаска до 12:00 с пивом.',detail:'Standl 21'},
+        {badge:'badge-food',title:'Wirtshaus in der Au',desc:'Лучшие кнедли и нефильтрованное пиво.',detail:'Резервировать столик'},
+        {badge:'badge-food',title:'Augustiner-Keller',desc:'Пивной сад на 5000 мест.',detail:'Arnulfstraße 52'},
+        {badge:'badge-food',title:'Dallmayr',desc:'Деликатесный магазин с 1700 года.',detail:'Буфет наверху — отличный обед'},
+        {badge:'badge-food',title:'Schmalznudel',desc:'Пончики с 5 утра.',detail:'Только наличные'}
+      ],
+      outside: [
+        {badge:'badge-out',title:'Нойшванштайн',desc:'Сказочный замок, 2ч на поезде.',detail:'Билеты онлайн за 2 дня · €25 поезд'},
+        {badge:'badge-out',title:'Штарнбергское озеро',desc:'35 мин на S-Bahn, купание.',detail:'Зона A/B транспорта'},
+        {badge:'badge-out',title:'Регенсбург + Вальхалла',desc:'Средневековый город и храм над Дунаем.',detail:'1.5ч на поезде'},
+        {badge:'badge-out',title:'Цугшпитце',desc:'Высочайшая точка Германии.',detail:'~€60 · озеро Айбзее'}
+      ],
+      tips: [
+        {badge:'badge-tip',title:'CityTourCard',desc:'€28 на 2 дня — транспорт и скидки.'},
+        {badge:'badge-tip',title:'Bayern-Ticket',desc:'€29 на человека, весь день по Баварии.'},
+        {badge:'badge-tip',title:'Своя еда в пивных садах',desc:'Можно приносить закуски.'},
+        {badge:'badge-tip',title:'Купание в Изаре',desc:'Бесплатные зоны у реки.'},
+        {badge:'badge-tip',title:'Аэропорт: S-Bahn',desc:'€13.60, 40 мин до центра.'}
+      ]
+    },
+    barcelona: {
+      events: [
+        {badge:'badge-event',title:'Brunch Electronik Festival',desc:'Eric Prydz, Paul Kalkbrenner, The Blaze. 8 августа — второй день.',detail:'7–9 АВГУСТА · Parc del Fòrum · €70–130'},
+        {badge:'badge-event',title:'Festival del Grec',desc:'200+ концертов на знаковых площадках.',detail:'Август–Сентябрь'},
+        {badge:'badge-event',title:'Барселона — столица архитектуры 2026',desc:'1500+ мероприятий UNESCO.',detail:'Павильон Мис ван дер Роэ — 1-е вс бесплатно'},
+        {badge:'badge-event',title:'Ночной сапсерфинг',desc:'Светящиеся сапборды у Барселонеты.',detail:'До конца августа'}
+      ],
+      must: [
+        {badge:'badge-must',title:'Саграда Фамилия',desc:'Билеты за 2–3 недели.',detail:'€26–38 · утро 9–11'},
+        {badge:'badge-must',title:'Парк Гуэль',desc:'Монументальная зона €10, остальное бесплатно.',detail:'Верхняя часть бесплатна'},
+        {badge:'badge-must',title:'Готический квартал и Эль-Борн',desc:'Собор, римские руины MUHBA.',detail:'MUHBA — €7'},
+        {badge:'badge-must',title:'Монжуик',desc:'Замок, фонтан (шоу пт–сб 21:30).',detail:'Фонтан по выходным'},
+        {badge:'badge-must',title:'La Pedrera Night Experience',desc:'Крыша с музыкой и кавой.',detail:'€39 · пт–сб'}
+      ],
+      niche: [
+        {badge:'badge-niche',title:'Bunkers del Carmel',desc:'Лучшая панорама на закате.',detail:'Бесплатно · подъем 25 мин'},
+        {badge:'badge-niche',title:'Побленоу',desc:'Барселонский Бруклин.',detail:'Rambla del Poblenou'},
+        {badge:'badge-niche',title:'Павильон Мис ван дер Роэ',desc:'Шедевр модернизма, 1-е вс бесплатно (8 авг).',detail:'8 августа = БЕСПЛАТНО'},
+        {badge:'badge-niche',title:'Recinte Modernista de Sant Pau',desc:'Больница-шедевр, UNESCO.',detail:'€18 · 10 мин от Саграды'},
+        {badge:'badge-niche',title:'Парк Лабиринт Орта',desc:'Кипарисовый лабиринт.',detail:'Редкие туристы'},
+        {badge:'badge-niche',title:'Mirador del Passeig de l\'Escullera',desc:'Смотровая на волноломе.',detail:'Бесплатно'},
+        {badge:'badge-niche',title:'Дворик Casa de l\'Ardiaca',desc:'Фонтан и черепахи в Готике.',detail:'Бесплатно'},
+        {badge:'badge-niche',title:'Encants Vells',desc:'Блошиный рынок под зеркальным навесом.',detail:'Пн, Ср, Пт, Сб'},
+        {badge:'badge-niche',title:'Культурный центр El Born',desc:'Руины внутри старого рынка.',detail:'Бесплатно'}
+      ],
+      food: [
+        {badge:'badge-food',title:'Рынок Santa Caterina',desc:'Альтернатива Бокерии.',detail:'Цены вдвое ниже'},
+        {badge:'badge-food',title:'Пинчос в Эль-Борне',desc:'El Xampanyet, Bar del Pla.',detail:'Стоя у стойки дешевле'},
+        {badge:'badge-food',title:'Вермут с 11:00',desc:'Воскресный ритуал. Bar Calders.',detail:'Настоящая барселонская традиция'},
+        {badge:'badge-food',title:'Gelaaati di Marco',desc:'Лучшее джелато.',detail:'C/ de la Llibreteria'},
+        {badge:'badge-food',title:'La Cova Fumada',desc:'Изобретатели бомбас.',detail:'Без вывески, только наличные'},
+        {badge:'badge-food',title:'Bar Marsella',desc:'Старейший бар (1820), абсент.',detail:'C/ dels Escudellers Blancs 1'}
+      ],
+      outside: [
+        {badge:'badge-out',title:'Монсеррат',desc:'Монастырь в горах, хор в 13:00.',detail:'Поезд + фуникулёр ~€32'},
+        {badge:'badge-out',title:'Коста-Брава — каякинг',desc:'Пещеры и бухты.',detail:'6-8ч туры'},
+        {badge:'badge-out',title:'Ситжес',desc:'35 мин на поезде, пляж и модерн.',detail:'Спокойный курорт'}
+      ],
+      tips: [
+        {badge:'badge-tip',title:'T-Casual (10 поездок)',desc:'~€12, выгоднее Barcelona Card.'},
+        {badge:'badge-tip',title:'Жара и сиеста',desc:'Сложные маршруты до 13:00 и после 18:00.'},
+        {badge:'badge-tip',title:'Пляжи не Barceloneta',desc:'Mar Bella, Bogatell — тише.'},
+        {badge:'badge-tip',title:'Карманники',desc:'Осторожно на Рамбле и в метро.'},
+        {badge:'badge-tip',title:'Время ужина с 21:00',desc:'Menu del día на обед — €12–15.'},
+        {badge:'badge-tip',title:'Питьевые фонтаны',desc:'Вода бесплатная и чистая.'}
+      ]
+    },
+    prague: {
+      events: [
+        {badge:'badge-event',title:'Prague Proms',desc:'Классика, джаз, киномузыка.',detail:'Август–Сентябрь · Obecní dům'},
+        {badge:'badge-event',title:'Letní Letná Festival',desc:'Старт 12 августа: цирк, театр, парад.',detail:'12 АВГУСТА · Letná Park'},
+        {badge:'badge-event',title:'Respect Festival',desc:'Мировая музыка на острове Штваница.',detail:'Лето 2026'},
+        {badge:'badge-event',title:'Signal SPACE',desc:'Постоянная световая инсталляция.',detail:'Открыто'},
+        {badge:'badge-event',title:'Harry Potter: The Exhibition',desc:'С 6 августа в PVA Expo.',detail:'Билеты онлайн'}
+      ],
+      must: [
+        {badge:'badge-must',title:'Пражский Град',desc:'Открыт с 6:00, территория бесплатно.',detail:'До 9 утра пусто'},
+        {badge:'badge-must',title:'Вышеград',desc:'Крепость, кладбище знаменитостей.',detail:'Бесплатно · 15 мин от центра'},
+        {badge:'badge-must',title:'Астрономические часы',desc:'Башня Старой Ратуши.',detail:'€6 · Часы бесплатно'},
+        {badge:'badge-must',title:'Карлов мост',desc:'Только на рассвете.',detail:'Бесплатно'},
+        {badge:'badge-must',title:'Еврейский квартал',desc:'Синагоги и кладбище.',detail:'Комбо-билет €20'}
+      ],
+      niche: [
+        {badge:'badge-niche',title:'Лаборатория алхимика',desc:'Подземелье XVI века.',detail:'Haštálská 1 · ~€15'},
+        {badge:'badge-niche',title:'Голова Кафки',desc:'11-метровая вращающаяся скульптура.',detail:'Бесплатно · Quadrio'},
+        {badge:'badge-niche',title:'Невидимая выставка',desc:'Час в абсолютной темноте.',detail:'~€14 · Бронировать'},
+        {badge:'badge-niche',title:'Sapa — вьетнамский рынок',desc:'Лучший фо в Европе.',detail:'30 мин от центра'},
+        {badge:'badge-niche',title:'Бункер под Вацлавской',desc:'Ядерное убежище.',detail:'400 CZK (~€16)'},
+        {badge:'badge-niche',title:'DOX',desc:'Центр современного искусства с дирижаблем.',detail:'Голешовице'},
+        {badge:'badge-niche',title:'Вилла Müller',desc:'Шедевр Адольфа Лооса.',detail:'Бронировать экскурсию'},
+        {badge:'badge-niche',title:'Улица Новый Свет',desc:'Идиллическая улочка у Града.',detail:'Бесплатно'},
+        {badge:'badge-niche',title:'U Sudu',desc:'Подземный винный лабиринт.',detail:'Старый Город'}
+      ],
+      food: [
+        {badge:'badge-food',title:'Polední menu',desc:'Обед €6–8, суп+главное+напиток.',detail:'Ищите вывеску в окне'},
+        {badge:'badge-food',title:'Lokál',desc:'Непастеризованный Pilsner.',detail:'Dlouhá 33'},
+        {badge:'badge-food',title:'Kantýna',desc:'Мясной ресторан в банке.',detail:'Выбираешь сырое мясо'},
+        {badge:'badge-food',title:'Větrník',desc:'Чешский заварной пирожок.',detail:'Gardens Restaurant'},
+        {badge:'badge-food',title:'Pivovarský klub',desc:'50 кранов, 200 бутылок.',detail:'Жижков'},
+        {badge:'badge-food',title:'U Medvídků',desc:'Пивоварня 1466 года.',detail:'X-Beer 33°'}
+      ],
+      outside: [
+        {badge:'badge-out',title:'Кутна Гора',desc:'Костница, 40 000 скелетов.',detail:'Поезд €5 · полдня'},
+        {badge:'badge-out',title:'Телч',desc:'Ренессансный город UNESCO.',detail:'2.5ч, без туристов'},
+        {badge:'badge-out',title:'Карлштейн',desc:'Готический замок XIV века.',detail:'40 мин, €3 поезд'}
+      ],
+      tips: [
+        {badge:'badge-tip',title:'Платите в кронах',desc:'Не в евро — курс грабительский.'},
+        {badge:'badge-tip',title:'Пиво дешевле воды',desc:'40–60 CZK.'},
+        {badge:'badge-tip',title:'Трамвай #22',desc:'Туристический маршрут за €1.'},
+        {badge:'badge-tip',title:'Приложение PID Lítačka',desc:'Билеты на транспорт.'},
+        {badge:'badge-tip',title:'Классика за €10–25',desc:'Билеты на GoOut.cz.'}
+      ]
     }
-    container.innerHTML = html;
-  });
-  updateAllSaveButtons();
-}
+  };
 
-// ─────────────────── SAVE / ROUTE LOGIC ───────────────────
-let savedItems = JSON.parse(localStorage.getItem('eurotrip_route') || '[]');
+  let savedItems = JSON.parse(localStorage.getItem('eurotrip_route') || '[]');
 
-function saveData() {
-  localStorage.setItem('eurotrip_route', JSON.stringify(savedItems));
-  renderRoutePanel();
-}
-
-function toggleSave(city, cat, title, detail, badge) {
-  const id = `${city}-${cat}-${title}`;
-  const existing = savedItems.findIndex(i => i.id === id);
-  if (existing > -1) {
-    savedItems.splice(existing, 1);
-  } else {
-    savedItems.push({ id, city, cat, title, detail, badge, priority: 'optional' });
+  function saveData() {
+    localStorage.setItem('eurotrip_route', JSON.stringify(savedItems));
+    renderRoutePanel();
+    updateAllPriorityButtons();
   }
-  saveData();
-  updateAllSaveButtons();
-}
 
-function setPriority(city, cat, title, priority) {
-  const id = `${city}-${cat}-${title}`;
-  const item = savedItems.find(i => i.id === id);
-  if (item) {
-    item.priority = priority;
-  } else {
-    // Auto-save with priority
-    const fullItem = findOriginalItem(city, cat, title);
-    savedItems.push({ id, city, cat, title, detail: fullItem?.detail || '', badge: fullItem?.badge || '', priority });
-  }
-  saveData();
-  updateAllSaveButtons();
-}
-
-function findOriginalItem(city, cat, title) {
-  return (data[city] && data[city][cat]) ? data[city][cat].find(i => i.title === title) : null;
-}
-
-function updateAllSaveButtons() {
-  document.querySelectorAll('.save-btn').forEach(btn => {
-    const id = btn.getAttribute('data-id');
-    if (!id) return;
-    const saved = savedItems.find(i => i.id === id);
-    if (saved) {
-      btn.classList.add('saved');
-      btn.textContent = saved.priority === 'must' ? '★ Обязательно' : '★ В избранном';
-      if (saved.priority === 'must') btn.classList.add('must');
-      else btn.classList.remove('must');
-    } else {
-      btn.classList.remove('saved', 'must');
-      btn.textContent = '☆ В избранное';
-    }
-    // Update priority buttons
-    const card = btn.closest('.card, .event-banner, .tip-card');
-    if (card) {
-      const mustBtn = card.querySelector('.must-btn');
-      const optBtn = card.querySelector('.opt-btn');
-      if (mustBtn && optBtn && saved) {
-        mustBtn.classList.toggle('active-must', saved.priority === 'must');
-        optBtn.classList.toggle('active-opt', saved.priority === 'optional');
+  // Основная функция обработки нажатия на кнопку приоритета
+  function togglePriority(city, cat, title, detail, badge, priority) {
+    const id = `${city}-${cat}-${title}`;
+    const existingIndex = savedItems.findIndex(i => i.id === id);
+    if (existingIndex > -1) {
+      // Уже есть в маршруте
+      if (savedItems[existingIndex].priority === priority) {
+        // Тот же приоритет — удаляем
+        savedItems.splice(existingIndex, 1);
+      } else {
+        // Меняем приоритет
+        savedItems[existingIndex].priority = priority;
       }
+    } else {
+      // Добавляем новый
+      savedItems.push({ id, city, cat, title, detail, badge, priority });
     }
-  });
-}
-
-function renderRoutePanel() {
-  const container = document.getElementById('routeList');
-  if (savedItems.length === 0) {
-    container.innerHTML = '<div class="route-empty">Пока ничего не выбрано. Нажимайте «В избранное» на карточках.</div>';
-  } else {
-    const cityNames = { munich: 'Мюнхен', barcelona: 'Барселона', prague: 'Прага' };
-    const catNames = { must: 'Обязательное', niche: 'Нишевое', food: 'Еда', outside: 'Окрестности', tips: 'Советы', events: 'События' };
-    let html = '';
-    savedItems.forEach((item, idx) => {
-      html += `<div class="route-item ${item.priority === 'must' ? 'must-item' : ''}">
-        <span class="remove-item" onclick="removeItem(${idx})">✕</span>
-        <strong>${cityNames[item.city] || item.city} · ${catNames[item.cat] || item.cat} · ${item.priority === 'must' ? 'ОБЯЗАТЕЛЬНО' : 'опционально'}</strong>
-        ${item.title}
-        ${item.detail ? '<br><small style="color:#6b6560">'+item.detail+'</small>' : ''}
-      </div>`;
-    });
-    container.innerHTML = html;
-  }
-}
-
-function removeItem(idx) {
-  savedItems.splice(idx, 1);
-  saveData();
-  updateAllSaveButtons();
-}
-
-function clearRoute() {
-  if (confirm('Очистить весь маршрут?')) {
-    savedItems = [];
     saveData();
-    updateAllSaveButtons();
   }
-}
 
-function exportRoute() {
-  const data = JSON.stringify(savedItems, null, 2);
-  navigator.clipboard.writeText(data).then(() => alert('Маршрут скопирован в буфер обмена! Отправьте этот текст другому человеку или сохраните.')).catch(() => alert('Не удалось скопировать.'));
-}
+  function renderRoutePanel() {
+    const container = document.getElementById('routeList');
+    if (savedItems.length === 0) {
+      container.innerHTML = '<div class="route-empty">Пока ничего не выбрано. Нажимайте «Идем» или «Опционально» на карточках.</div>';
+      return;
+    }
 
-function importRoutePrompt() {
-  const json = prompt('Вставьте JSON маршрута:');
-  if (json) {
-    try {
-      const imported = JSON.parse(json);
-      if (Array.isArray(imported)) {
-        savedItems = imported;
-        saveData();
-        updateAllSaveButtons();
-        alert('Маршрут импортирован!');
+    const cityNames = { munich: 'Мюнхен', barcelona: 'Барселона', prague: 'Прага' };
+    const catNames = { events:'События', must:'Обязательное', niche:'Нишевое', food:'Еда', outside:'Окрестности', tips:'Советы' };
+
+    // Группируем
+    const grouped = {};
+    savedItems.forEach(item => {
+      const cityKey = item.city;
+      const catKey = item.cat;
+      if (!grouped[cityKey]) grouped[cityKey] = {};
+      if (!grouped[cityKey][catKey]) grouped[cityKey][catKey] = [];
+      grouped[cityKey][catKey].push(item);
+    });
+
+    let html = '';
+    for (const [city, cats] of Object.entries(grouped)) {
+      html += `<div class="route-group"><h4>${cityNames[city] || city}</h4>`;
+      for (const [cat, items] of Object.entries(cats)) {
+        html += `<div style="margin-bottom:8px;"><em style="color:var(--muted);font-size:12px;">${catNames[cat] || cat}</em>`;
+        items.forEach((item, idx) => {
+          const globalIndex = savedItems.findIndex(i => i.id === item.id);
+          html += `<div class="route-item ${item.priority === 'must' ? 'must-item' : ''}">
+            <span class="item-text">${item.title} ${item.detail ? '<br><small style="color:#6b6560">'+item.detail+'</small>' : ''}</span>
+            <span class="remove-item" onclick="removeItem(${globalIndex})">✕</span>
+          </div>`;
+        });
+        html += `</div>`;
       }
-    } catch(e) { alert('Неверный формат JSON'); }
+      html += `</div>`;
+    }
+    container.innerHTML = html;
   }
-}
 
-function toggleRoutePanel() {
-  document.getElementById('routePanel').classList.toggle('open');
-}
-
-// ─────────────────── NAVIGATION ───────────────────
-function showCity(city) {
-  document.querySelectorAll('.city-section').forEach(s => s.classList.remove('active'));
-  document.getElementById(city).classList.add('active');
-  document.querySelectorAll('.nav-city').forEach(n => {
-    n.classList.remove('munich', 'barcelona', 'prague');
-    if (n.textContent.trim().toLowerCase().includes(city)) n.classList.add(city);
-  });
-  // Activate first tab
-  switchTab(city, 'events');
-  updateAllSaveButtons();
-}
-
-function switchTab(city, tabName) {
-  const tabsContainer = document.getElementById(city + '-tabs');
-  if (!tabsContainer) return;
-  tabsContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  const tabTexts = { events:'События', must:'Обязательное', niche:'Нишевое', food:'Еда', outside:'Окрестности', tips:'Лайфхаки' };
-  tabsContainer.querySelectorAll('.tab').forEach(t => {
-    if (t.textContent.trim() === (tabTexts[tabName] || tabName)) t.classList.add('active');
-  });
-  const section = document.getElementById(city);
-  if (section) {
-    section.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    const target = document.getElementById(city + '-' + tabName);
-    if (target) target.classList.add('active');
+  function removeItem(index) {
+    savedItems.splice(index, 1);
+    saveData();
   }
-  updateAllSaveButtons();
-}
 
-// ─────────────────── INIT ───────────────────
-renderCity('munich');
-renderCity('barcelona');
-renderCity('prague');
-renderRoutePanel();
-updateAllSaveButtons();
+  function clearRoute() {
+    if (confirm('Очистить весь маршрут?')) {
+      savedItems = [];
+      saveData();
+    }
+  }
+
+  function exportRoute() {
+    const json = JSON.stringify(savedItems, null, 2);
+    navigator.clipboard.writeText(json).then(() => alert('Маршрут скопирован в буфер обмена!')).catch(() => alert('Не удалось скопировать.'));
+  }
+
+  function importRoutePrompt() {
+    const json = prompt('Вставьте JSON маршрута:');
+    if (json) {
+      try {
+        const imported = JSON.parse(json);
+        if (Array.isArray(imported)) {
+          savedItems = imported;
+          saveData();
+          alert('Маршрут импортирован!');
+        }
+      } catch(e) { alert('Неверный формат JSON'); }
+    }
+  }
+
+  function toggleRoutePanel() {
+    document.getElementById('routePanel').classList.toggle('open');
+  }
+
+  function updateAllPriorityButtons() {
+    document.querySelectorAll('.priority-btn').forEach(btn => {
+      const card = btn.closest('.card, .event-banner, .tip-card');
+      if (!card) return;
+      const city = card.closest('.city-section')?.id;
+      const cat = card.closest('.tab-content')?.id.replace(city+'-', '');
+      const titleEl = card.querySelector('h3, h4');
+      if (!city || !cat || !titleEl) return;
+      const title = titleEl.textContent.trim();
+      const id = `${city}-${cat}-${title}`;
+      const saved = savedItems.find(i => i.id === id);
+      const isMustBtn = btn.classList.contains('must-btn');
+      btn.classList.remove('active-must', 'active-opt');
+      if (saved) {
+        if (saved.priority === 'must' && isMustBtn) btn.classList.add('active-must');
+        if (saved.priority === 'optional' && !isMustBtn) btn.classList.add('active-opt');
+      }
+    });
+  }
+
+  // Рендеринг города
+  function renderCity(city) {
+    Object.keys(data[city]).forEach(cat => {
+      const container = document.getElementById(city + '-' + cat);
+      if (!container) return;
+      let html = '';
+      const items = data[city][cat];
+      if (cat === 'events') {
+        html += '<div class="section-label">События</div>';
+        items.forEach(item => {
+          html += `<div class="event-banner ${city==='munich'?'munich-ev':city==='prague'?'prague-ev':''}">
+            <div class="ev-meta">${item.detail || ''}</div>
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+            <div class="priority-toggle">
+              <button class="priority-btn must-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}','must')">Идем</button>
+              <button class="priority-btn opt-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}','optional')">Опционально</button>
+            </div>
+          </div>`;
+        });
+      } else if (cat === 'tips') {
+        html += '<div class="section-label">Лайфхаки и советы</div><div class="tips-grid">';
+        items.forEach(item => {
+          html += `<div class="tip-card">
+            <span class="tip-icon">💡</span>
+            <h4>${item.title}</h4>
+            <p>${item.desc}</p>
+            <div class="priority-toggle">
+              <button class="priority-btn must-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','','${item.badge}','must')">Идем</button>
+              <button class="priority-btn opt-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','','${item.badge}','optional')">Опционально</button>
+            </div>
+          </div>`;
+        });
+        html += '</div>';
+      } else {
+        const catLabel = {must:'Обязательные места',niche:'Нишевое и нетуристическое',food:'Еда и напитки',outside:'Окрестности'}[cat] || '';
+        html += '<div class="section-label">'+catLabel+'</div><div class="cards">';
+        items.forEach(item => {
+          html += `<div class="card">
+            <span class="card-badge ${item.badge}">${item.badge.replace('badge-','').toUpperCase()}</span>
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+            ${item.detail ? '<div class="card-detail"><span>'+item.detail+'</span></div>' : ''}
+            <div class="priority-toggle">
+              <button class="priority-btn must-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}','must')">Идем</button>
+              <button class="priority-btn opt-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}','optional')">Опционально</button>
+            </div>
+          </div>`;
+        });
+        html += '</div>';
+      }
+      container.innerHTML = html;
+    });
+    updateAllPriorityButtons();
+  }
+
+  function showCity(city) {
+    document.querySelectorAll('.city-section').forEach(s => s.classList.remove('active'));
+    document.getElementById(city).classList.add('active');
+    document.querySelectorAll('.nav-city').forEach(n => {
+      n.classList.remove('munich', 'barcelona', 'prague');
+      if (n.textContent.trim().toLowerCase().includes(city)) n.classList.add(city);
+    });
+    switchTab(city, 'events');
+  }
+
+  function switchTab(city, tabName) {
+    const tabsContainer = document.getElementById(city + '-tabs');
+    if (!tabsContainer) return;
+    tabsContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    const tabTexts = { events:'События', must:'Обязательное', niche:'Нишевое', food:'Еда', outside:'Окрестности', tips:'Лайфхаки' };
+    tabsContainer.querySelectorAll('.tab').forEach(t => {
+      if (t.textContent.trim() === (tabTexts[tabName] || tabName)) t.classList.add('active');
+    });
+    const section = document.getElementById(city);
+    if (section) {
+      section.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      const target = document.getElementById(city + '-' + tabName);
+      if (target) target.classList.add('active');
+    }
+    updateAllPriorityButtons();
+  }
+
+  // Инициализация
+  renderCity('munich');
+  renderCity('barcelona');
+  renderCity('prague');
+  renderRoutePanel();
+  updateAllPriorityButtons();
 </script>
 </body>
 </html>
