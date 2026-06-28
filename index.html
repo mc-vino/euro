@@ -1,1114 +1,1158 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Путеводитель · Мюнхен · Барселона · Прага · Август 2026</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg: #0d0d0d; --surface: #141414; --surface2: #1c1c1c; --border: #2a2a2a;
-            --text: #e8e2d9; --muted: #6b6560; --munich: #c8923a; --barcelona: #d44b3f;
-            --prague: #4a8fa8; --accent: #b5a48a;
-        }
-        html { scroll-behavior: smooth; }
-        body { background: var(--bg); color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 17px; line-height: 1.7; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Китай · Путеводитель</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        header { position: relative; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; overflow: hidden; padding: 60px 20px; }
-        header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 30%, rgba(200,146,58,0.08) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 80% 70%, rgba(74,143,168,0.07) 0%, transparent 60%), radial-gradient(ellipse 40% 40% at 50% 50%, rgba(212,75,63,0.05) 0%, transparent 60%); }
-        .header-date { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em; color: var(--muted); margin-bottom: 32px; text-transform: uppercase; }
-        .header-title { font-size: clamp(52px, 8vw, 100px); font-weight: 300; line-height: 1; letter-spacing: -0.02em; margin-bottom: 24px; }
-        .header-title em { font-style: italic; color: var(--accent); }
-        .header-subtitle { font-size: 18px; color: var(--muted); font-style: italic; margin-bottom: 60px; max-width: 480px; }
-        .city-pills { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-        .city-pill { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid var(--border); border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s; background: var(--surface); text-decoration: none; color: var(--text); }
-        .city-pill:hover { border-color: var(--accent); color: var(--accent); }
-        .city-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
-        .dot-munich { background: var(--munich); } .dot-barcelona { background: var(--barcelona); } .dot-prague { background: var(--prague); }
+:root {
+  --ink: #0c0b09;
+  --ink2: #141210;
+  --ink3: #1d1915;
+  --border: #2b2620;
+  --border2: #38322a;
+  --paper: #ebe3d4;
+  --muted: #837767;
+  --muted2: #5d5446;
+  --cinnabar: #c5392c;
+  --gold: #c9a227;
+  --jade: #5f9e85;
 
-        nav { position: sticky; top: 0; z-index: 100; background: rgba(13,13,13,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; gap: 0; overflow-x: auto; }
-        .nav-city { display: flex; align-items: center; gap: 6px; padding: 16px 20px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; user-select: none; }
-        .nav-city:hover { color: var(--text); }
-        .nav-city.munich { border-color: var(--munich); color: var(--munich); }
-        .nav-city.barcelona { border-color: var(--barcelona); color: var(--barcelona); }
-        .nav-city.prague { border-color: var(--prague); color: var(--prague); }
+  --yunnan: #5f9e85;
+  --guilin: #3f8ea0;
+  --chengdu: #c5503c;
+  --beijing: #c9a227;
+  --shanghai: #c0764a;
+}
 
-        .user-switch { margin-left: auto; display: flex; gap: 8px; align-items: center; }
-        .user-switch button { padding: 6px 12px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 10px; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
-        .user-switch button.active { border-color: var(--accent); color: var(--accent); background: rgba(181,164,138,0.1); }
+html { scroll-behavior: smooth; }
 
-        .city-section { max-width: 1100px; margin: 0 auto; padding: 80px 24px; display: none; }
-        .city-section.active { display: block; }
-        .city-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 56px; padding-bottom: 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 16px; }
-        .city-name { font-size: clamp(48px, 6vw, 80px); font-weight: 300; letter-spacing: -0.03em; line-height: 1; }
-        .city-name.munich { color: var(--munich); } .city-name.barcelona { color: var(--barcelona); } .city-name.prague { color: var(--prague); }
-        .city-meta { text-align: right; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; }
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
 
-        .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 36px; overflow-x: auto; }
-        .tab { padding: 12px 20px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 0.15s; white-space: nowrap; user-select: none; }
-        .tab:hover { color: var(--text); }
-        .tab.active { color: var(--text); border-bottom-color: var(--accent); }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+.zh { font-family: 'Noto Serif SC', serif; }
 
-        .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
-        .card { background: var(--surface); border: 1px solid var(--border); border-radius: 2px; padding: 24px; transition: border-color 0.2s, transform 0.15s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
-        .card:hover { border-color: #3a3a3a; transform: translateY(-1px); }
-        .card-badge { display: inline-block; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 8px; border-radius: 1px; margin-bottom: 12px; align-self: flex-start; }
-        .badge-must { background: rgba(181,164,138,0.15); color: var(--accent); border: 1px solid rgba(181,164,138,0.3); }
-        .badge-niche { background: rgba(74,143,168,0.12); color: #6ab5cf; border: 1px solid rgba(74,143,168,0.25); }
-        .badge-free { background: rgba(100,180,100,0.12); color: #7cc47c; border: 1px solid rgba(100,180,100,0.25); }
-        .badge-event { background: rgba(212,75,63,0.12); color: #e07a72; border: 1px solid rgba(212,75,63,0.25); }
-        .badge-food { background: rgba(200,146,58,0.12); color: #e0a855; border: 1px solid rgba(200,146,58,0.25); }
-        .badge-area { background: rgba(130,100,170,0.12); color: #b09acc; border: 1px solid rgba(130,100,170,0.25); }
-        .badge-tip { background: rgba(180,180,100,0.12); color: #c8c87a; border: 1px solid rgba(180,180,100,0.25); }
-        .badge-out { background: rgba(100,160,120,0.12); color: #7dc4a0; border: 1px solid rgba(100,160,120,0.25); }
-        .card h3 { font-size: 19px; font-weight: 400; line-height: 1.3; margin-bottom: 10px; letter-spacing: -0.01em; }
-        .card p { color: var(--muted); font-size: 15px; line-height: 1.65; margin-bottom: 14px; }
-        .card-detail { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 11px; color: #4a4a4a; line-height: 1.8; }
-        .card-detail span { color: #5a5a5a; }
+/* ─── HEADER ─── */
+header {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 80px 24px;
+}
+/* ink-wash atmosphere */
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 18% 22%, rgba(95,158,133,0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 50% at 82% 28%, rgba(63,142,160,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 60% at 50% 88%, rgba(197,57,44,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 35% at 70% 65%, rgba(201,162,39,0.06) 0%, transparent 55%);
+  pointer-events: none;
+}
+/* faint giant character */
+.header-glyph {
+  position: absolute;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 300;
+  font-size: clamp(280px, 50vw, 620px);
+  color: rgba(235,227,212,0.025);
+  line-height: 1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  pointer-events: none;
+  user-select: none;
+}
+.header-inner { position: relative; }
+.header-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: var(--muted);
+  margin-bottom: 36px;
+  text-transform: uppercase;
+}
+.header-title {
+  font-size: clamp(56px, 9vw, 116px);
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.header-title .zh-main {
+  display: block;
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 76px);
+  color: var(--cinnabar);
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+.header-sub {
+  font-size: 19px;
+  color: var(--muted);
+  font-style: italic;
+  margin: 26px auto 56px;
+  max-width: 540px;
+}
+.header-rule {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(180deg, transparent, var(--gold), transparent);
+  margin: 0 auto 40px;
+}
+.pills { display: flex; gap: 11px; flex-wrap: wrap; justify-content: center; max-width: 760px; }
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 19px;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(20,18,16,0.6);
+  color: var(--paper);
+  user-select: none;
+}
+.pill:hover { border-color: var(--gold); transform: translateY(-1px); }
+.pill .seal {
+  width: 16px; height: 16px;
+  border-radius: 2px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 10px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.seal-yn { background: var(--yunnan); }
+.seal-gl { background: var(--guilin); }
+.seal-cd { background: var(--chengdu); color: var(--paper); }
+.seal-bj { background: var(--beijing); }
+.seal-sh { background: var(--shanghai); }
+.seal-pr { background: var(--paper); color: var(--ink); }
 
-        .priority-toggle { display: flex; gap: 8px; margin-top: 8px; }
-        .priority-btn { padding: 6px 12px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 9px; cursor: pointer; border-radius: 2px; transition: all 0.2s; letter-spacing: 0.1em; text-transform: uppercase; }
-        .priority-btn:hover { border-color: var(--accent); color: var(--accent); }
-        .priority-btn.active-must { border-color: var(--munich); color: var(--munich); background: rgba(200,146,58,0.1); }
-        .priority-btn.active-opt { border-color: #5a8a5a; color: #7cc47c; background: rgba(100,180,100,0.1); }
+/* ─── NAV ─── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(12,11,9,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+nav::-webkit-scrollbar { display: none; }
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 17px 18px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+  user-select: none;
+  flex-shrink: 0;
+}
+.nav-item:hover { color: var(--paper); }
+.nav-item .zh { font-size: 13px; letter-spacing: 0.05em; }
+.nav-item.on-yunnan { border-color: var(--yunnan); color: var(--yunnan); }
+.nav-item.on-guilin { border-color: var(--guilin); color: var(--guilin); }
+.nav-item.on-chengdu { border-color: var(--chengdu); color: var(--chengdu); }
+.nav-item.on-beijing { border-color: var(--beijing); color: var(--beijing); }
+.nav-item.on-shanghai { border-color: var(--shanghai); color: var(--shanghai); }
+.nav-item.on-practical { border-color: var(--paper); color: var(--paper); }
 
-        .event-banner { background: var(--surface); border: 1px solid rgba(212,75,63,0.3); border-left: 3px solid var(--barcelona); padding: 20px 24px; margin-bottom: 16px; border-radius: 2px; }
-        .event-banner.munich-ev { border-left-color: var(--munich); border-color: rgba(200,146,58,0.3); }
-        .event-banner.prague-ev { border-left-color: var(--prague); border-color: rgba(74,143,168,0.3); }
-        .event-banner h3 { font-size: 20px; margin-bottom: 6px; }
-        .event-banner .ev-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-bottom: 10px; letter-spacing: 0.08em; }
-        .event-banner p { color: var(--muted); font-size: 15px; }
+/* ─── SECTION ─── */
+.region {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 90px 24px;
+}
+.region-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+.region-title-wrap { display: flex; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+.region-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 300;
+  font-size: clamp(44px, 6vw, 78px);
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+.region-name {
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  font-style: italic;
+}
+.region-meta {
+  text-align: right;
+  color: var(--muted2);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  line-height: 1.9;
+  letter-spacing: 0.05em;
+}
+.region-tagline {
+  color: var(--muted);
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 44px;
+  max-width: 720px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border);
+}
+.region-zh.c-yunnan { color: var(--yunnan); }
+.region-zh.c-guilin { color: var(--guilin); }
+.region-zh.c-chengdu { color: var(--chengdu); }
+.region-zh.c-beijing { color: var(--beijing); }
+.region-zh.c-shanghai { color: var(--shanghai); }
 
-        .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-        .tip-card { background: var(--surface); border: 1px solid var(--border); padding: 20px; border-radius: 2px; }
-        .tip-icon { font-size: 24px; margin-bottom: 10px; display: block; }
-        .tip-card h4 { font-size: 16px; font-weight: 400; margin-bottom: 8px; }
-        .tip-card p { font-size: 14px; color: var(--muted); }
+/* ─── TABS ─── */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 38px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  padding: 13px 18px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.15s;
+  white-space: nowrap;
+  user-select: none;
+  flex-shrink: 0;
+}
+.tab:hover { color: var(--paper); }
+.tab.active { color: var(--paper); }
+.tab.active.t-yunnan { border-bottom-color: var(--yunnan); }
+.tab.active.t-guilin { border-bottom-color: var(--guilin); }
+.tab.active.t-chengdu { border-bottom-color: var(--chengdu); }
+.tab.active.t-beijing { border-bottom-color: var(--beijing); }
+.tab.active.t-shanghai { border-bottom-color: var(--shanghai); }
+.tab-content { display: none; animation: fade 0.3s ease; }
+.tab-content.active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
 
-        .my-route-panel { position: fixed; top: 50%; right: -440px; transform: translateY(-50%); width: 420px; max-height: 80vh; background: var(--surface); border: 1px solid var(--border); z-index: 200; transition: right 0.3s ease; overflow-y: auto; padding: 20px; border-radius: 4px 0 0 4px; }
-        .my-route-panel.open { right: 0; }
-        .route-toggle { position: fixed; right: 20px; bottom: 30px; z-index: 201; background: var(--surface); border: 1px solid var(--accent); color: var(--accent); padding: 12px 18px; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
-        .route-toggle:hover { background: rgba(181,164,138,0.1); }
+/* ─── CARDS ─── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 16px;
+}
+.card {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 24px;
+  transition: border-color 0.25s, transform 0.15s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover { border-color: var(--border2); transform: translateY(-1px); }
+.card-num {
+  position: absolute;
+  top: 18px; right: 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--muted2);
+  letter-spacing: 0.1em;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 9px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+  width: fit-content;
+}
+.badge .seal-mini {
+  width: 13px; height: 13px; border-radius: 1px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: 'Noto Serif SC', serif; font-size: 9px; font-weight: 600;
+}
+.b-must { background: rgba(197,57,44,0.13); color: #e08478; border: 1px solid rgba(197,57,44,0.3); }
+.b-must .seal-mini { background: var(--cinnabar); color: var(--ink); }
+.b-hidden { background: rgba(95,158,133,0.13); color: #82c4a6; border: 1px solid rgba(95,158,133,0.28); }
+.b-nature { background: rgba(63,142,160,0.13); color: #6cb6c6; border: 1px solid rgba(63,142,160,0.28); }
+.b-calm { background: rgba(180,160,120,0.12); color: #cabb8a; border: 1px solid rgba(180,160,120,0.28); }
+.b-food { background: rgba(201,162,39,0.13); color: #d8b84a; border: 1px solid rgba(201,162,39,0.28); }
+.b-out { background: rgba(130,150,180,0.12); color: #9fb0cc; border: 1px solid rgba(130,150,180,0.26); }
+.b-skip { background: rgba(120,110,100,0.12); color: #9a8d7d; border: 1px solid rgba(120,110,100,0.28); }
 
-        .route-filters { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-        .route-filters button { padding: 4px 8px; background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 9px; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
-        .route-filters button.active-filter { border-color: var(--accent); color: var(--accent); }
+.card h3 {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.card h3 .zh { font-size: 15px; color: var(--muted); font-weight: 300; margin-left: 7px; }
+.card p { color: var(--muted); font-size: 15px; line-height: 1.65; flex: 1; }
+.card-detail {
+  margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted2);
+  line-height: 1.85;
+  letter-spacing: 0.03em;
+}
+.card-detail b { color: var(--gold); font-weight: 400; }
 
-        .route-group { margin-bottom: 20px; }
-        .route-group h4 { font-size: 14px; font-weight: 400; color: var(--accent); margin-bottom: 8px; border-bottom: 1px solid var(--border); padding-bottom: 4px; letter-spacing: 0.05em; }
-        .route-item { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
-        .route-item .item-content { flex: 1; }
-        .route-item .remove-item { cursor: pointer; color: var(--muted); font-family: 'DM Mono', monospace; font-size: 12px; margin-left: 8px; transition: color 0.2s; }
-        .route-item .remove-item:hover { color: #d44b3f; }
-        .route-item .votes { display: flex; gap: 8px; align-items: center; margin-left: 12px; font-size: 12px; }
-        .vote-badge { padding: 2px 8px; border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 10px; }
-        .vote-must { background: rgba(200,146,58,0.15); color: var(--munich); border: 1px solid var(--munich); }
-        .vote-opt { background: rgba(100,180,100,0.15); color: #7cc47c; border: 1px solid #5a8a5a; }
-        .vote-none { color: var(--muted); }
-        .route-item.crossed { border-left: 3px solid #7cc47c; padding-left: 10px; }
-        .route-item.conflict { border-left: 3px solid #d44b3f; padding-left: 10px; }
-        .route-empty { color: var(--muted); text-align: center; padding: 40px 20px; font-style: italic; }
+/* ─── FESTIVAL BANNER ─── */
+.banner {
+  background: linear-gradient(100deg, rgba(197,57,44,0.10), rgba(201,162,39,0.05));
+  border: 1px solid rgba(197,57,44,0.3);
+  border-left: 3px solid var(--cinnabar);
+  padding: 22px 26px;
+  margin-bottom: 28px;
+  border-radius: 3px;
+}
+.banner-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--cinnabar);
+  margin-bottom: 9px;
+  text-transform: uppercase;
+}
+.banner h3 { font-size: 22px; font-weight: 400; margin-bottom: 8px; }
+.banner h3 .zh { color: var(--cinnabar); font-size: 18px; margin-left: 8px; }
+.banner p { color: var(--muted); font-size: 15px; }
 
-        footer { text-align: center; padding: 60px 24px; color: var(--muted); font-size: 13px; font-family: 'DM Mono', monospace; border-top: 1px solid var(--border); margin-top: 60px; }
+/* ─── ROUTE ─── */
+.route {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 30px;
+}
+.route-opt { margin-bottom: 34px; padding-bottom: 34px; border-bottom: 1px solid var(--border); }
+.route-opt:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.route-opt-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 14px; flex-wrap: wrap; }
+.route-opt-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--border2);
+  border-radius: 2px;
+  color: var(--gold);
+}
+.route-opt-title { font-size: 21px; font-weight: 400; }
+.route-days { display: flex; flex-direction: column; gap: 14px; }
+.route-day { display: flex; gap: 18px; }
+.route-day-n {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted2);
+  min-width: 64px;
+  padding-top: 3px;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.route-day-c h4 { font-size: 16px; font-weight: 500; margin-bottom: 3px; }
+.route-day-c p { font-size: 14px; color: var(--muted); }
+.route-note {
+  margin-top: 20px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted2);
+  line-height: 1.8;
+  padding: 14px 16px;
+  background: var(--ink3);
+  border-radius: 2px;
+  letter-spacing: 0.03em;
+}
+.route-note b { color: var(--gold); font-weight: 400; }
 
-        .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
-        .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+/* ─── TIPS ─── */
+.tips {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+  gap: 16px;
+}
+.tip {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  padding: 22px;
+  border-radius: 3px;
+}
+.tip-icon { font-size: 22px; margin-bottom: 11px; display: block; }
+.tip h4 { font-size: 16px; font-weight: 500; margin-bottom: 7px; }
+.tip p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.tip p b { color: var(--gold); font-weight: 400; }
 
-        @media (max-width: 600px) {
-            .city-header { flex-direction: column; align-items: flex-start; }
-            .city-meta { text-align: left; }
-            .my-route-panel { width: 100%; right: -100%; }
-            .user-switch { margin-left: 0; margin-top: 8px; }
-        }
-    </style>
+/* ─── LABEL ─── */
+.label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ─── DIVIDER ─── */
+.divider {
+  max-width: 1120px;
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.divider::after {
+  content: '☷';
+  position: absolute;
+  top: -11px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  padding: 0 16px;
+  color: var(--muted2);
+  font-size: 13px;
+}
+
+/* ─── PRACTICAL ─── */
+.practical-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.pcard {
+  background: var(--ink2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 24px;
+}
+.pcard-zh {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 28px;
+  color: var(--gold);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.pcard h4 { font-size: 18px; font-weight: 500; margin-bottom: 12px; }
+.pcard ul { list-style: none; }
+.pcard li {
+  font-size: 14.5px;
+  color: var(--muted);
+  padding: 7px 0 7px 18px;
+  position: relative;
+  line-height: 1.55;
+  border-bottom: 1px solid var(--border);
+}
+.pcard li:last-child { border-bottom: none; }
+.pcard li::before {
+  content: '·';
+  position: absolute;
+  left: 4px;
+  color: var(--cinnabar);
+  font-size: 18px;
+  top: 5px;
+}
+.pcard li b { color: var(--paper); font-weight: 400; }
+
+/* ─── FOOTER ─── */
+footer {
+  text-align: center;
+  padding: 70px 24px;
+  color: var(--muted2);
+  font-size: 12px;
+  font-family: 'DM Mono', monospace;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.08em;
+  line-height: 2.1;
+}
+footer .zh { color: var(--cinnabar); font-size: 20px; display: block; margin-bottom: 14px; letter-spacing: 0.2em; }
+
+@media (max-width: 600px) {
+  .region-head { flex-direction: column; align-items: flex-start; }
+  .region-meta { text-align: left; }
+  .route-day { flex-direction: column; gap: 5px; }
+  .cards { grid-template-columns: 1fr; }
+  .header-sub { font-size: 17px; }
+}
+</style>
 </head>
 <body>
 
+<!-- ═══ HEADER ═══ -->
 <header>
-    <div class="header-date">Август 2026 · Европа</div>
-    <h1 class="header-title">Мюнхен<br><em>Барселона</em><br>Прага</h1>
-    <p class="header-subtitle">Путеводитель: обязательное, нишевое, небанальное. Два путешественника — один маршрут</p>
-    <div class="city-pills">
-        <span class="city-pill" onclick="showCity('munich')"><span class="dot dot-munich"></span> 6–7 авг · Мюнхен</span>
-        <span class="city-pill" onclick="showCity('barcelona')"><span class="dot dot-barcelona"></span> 8–10 авг · Барселона</span>
-        <span class="city-pill" onclick="showCity('prague')"><span class="dot dot-prague"></span> 11–12 авг · Прага</span>
+  <div class="header-glyph">游</div>
+  <div class="header-inner">
+    <div class="header-eyebrow">Путеводитель · Первая половина августа</div>
+    <h1 class="header-title">
+      <span class="zh-main">中国</span>
+      Китай
+    </h1>
+    <p class="header-sub">Природа, история и тишина вдали от шума мегаполисов — и большие города там, где они того стоят</p>
+    <div class="header-rule"></div>
+    <div class="pills">
+      <span class="pill" onclick="go('yunnan')"><span class="seal seal-yn zh">云</span> Юньнань</span>
+      <span class="pill" onclick="go('guilin')"><span class="seal seal-gl zh">桂</span> Гуйлинь</span>
+      <span class="pill" onclick="go('chengdu')"><span class="seal seal-cd zh">蜀</span> Чэнду</span>
+      <span class="pill" onclick="go('beijing')"><span class="seal seal-bj zh">京</span> Пекин</span>
+      <span class="pill" onclick="go('shanghai')"><span class="seal seal-sh zh">沪</span> Шанхай</span>
+      <span class="pill" onclick="go('practical')"><span class="seal seal-pr zh">行</span> Практика</span>
     </div>
+  </div>
 </header>
 
-<nav>
-    <span class="nav-city munich active" onclick="showCity('munich')"><span class="dot dot-munich"></span> Мюнхен</span>
-    <span class="nav-city barcelona" onclick="showCity('barcelona')"><span class="dot dot-barcelona"></span> Барселона</span>
-    <span class="nav-city prague" onclick="showCity('prague')"><span class="dot dot-prague"></span> Прага</span>
-    <div class="user-switch">
-        <button id="user1Btn" class="active" onclick="switchUser('user1')">👤 Пользователь 1</button>
-        <button id="user2Btn" onclick="switchUser('user2')">👤 Пользователь 2</button>
-    </div>
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <span class="nav-item" onclick="go('yunnan')"><span class="zh">云</span> Юньнань</span>
+  <span class="nav-item" onclick="go('guilin')"><span class="zh">桂</span> Гуйлинь</span>
+  <span class="nav-item" onclick="go('chengdu')"><span class="zh">蜀</span> Чэнду</span>
+  <span class="nav-item" onclick="go('beijing')"><span class="zh">京</span> Пекин</span>
+  <span class="nav-item" onclick="go('shanghai')"><span class="zh">沪</span> Шанхай</span>
+  <span class="nav-item" onclick="go('practical')"><span class="zh">行</span> Практика</span>
 </nav>
 
-<section id="munich" class="city-section active">
-    <div class="city-header"><h2 class="city-name munich">Мюнхен</h2><div class="city-meta">6–7 августа 2026<br>Среда–Четверг · 2 дня</div></div>
-    <div class="tabs" id="munich-tabs">
-        <div class="tab active" onclick="switchTab('munich','events')">События</div>
-        <div class="tab" onclick="switchTab('munich','must')">Обязательное</div>
-        <div class="tab" onclick="switchTab('munich','niche')">Нишевое</div>
-        <div class="tab" onclick="switchTab('munich','food')">Еда</div>
-        <div class="tab" onclick="switchTab('munich','outside')">Окрестности</div>
-        <div class="tab" onclick="switchTab('munich','tips')">Лайфхаки</div>
+<!-- ═══════════ ЮНЬНАНЬ ═══════════ -->
+<section id="yunnan" class="region">
+  <div class="region-head">
+    <div class="region-title-wrap">
+      <span class="region-zh c-yunnan">云南</span>
+      <span class="region-name">Юньнань</span>
     </div>
-    <div class="tab-content active" id="munich-events"></div>
-    <div class="tab-content" id="munich-must"></div>
-    <div class="tab-content" id="munich-niche"></div>
-    <div class="tab-content" id="munich-food"></div>
-    <div class="tab-content" id="munich-outside"></div>
-    <div class="tab-content" id="munich-tips"></div>
+    <div class="region-meta">Дали · Лицзян · Шангри-Ла<br>6–7 дней · 16–26°C<br>★ лучший выбор под запрос</div>
+  </div>
+  <p class="region-tagline">Прохладное плато на 2000–3200 м: старые города народностей бай и наси, тибетские монастыри, ущелья и чайные деревни. Самый комфортный по климату регион Китая в августе.</p>
+
+  <div class="tabs" id="yunnan-tabs">
+    <div class="tab active t-yunnan" onclick="tab('yunnan','route')">Маршрут</div>
+    <div class="tab t-yunnan" onclick="tab('yunnan','main')">Главное</div>
+    <div class="tab t-yunnan" onclick="tab('yunnan','calm')">Тихие места</div>
+    <div class="tab t-yunnan" onclick="tab('yunnan','food')">Еда</div>
+    <div class="tab t-yunnan" onclick="tab('yunnan','event')">События</div>
+    <div class="tab t-yunnan" onclick="tab('yunnan','tips')">Лайфхаки</div>
+  </div>
+
+  <!-- route -->
+  <div class="tab-content active" id="yunnan-route">
+    <div class="banner">
+      <div class="banner-tag">6–7 августа 2026 · если попасть в даты</div>
+      <h3>Праздник факелов <span class="zh">火把节</span></h3>
+      <p>Главное аутентичное событие лета у народностей и и бай: костры, факельные шествия, скачки, борьба. Бай в Дали отмечают 7 августа, наси в Лицзяне — примерно 6–8 августа. Масштабнее всего — в Сичане (Сычуань) и Чусюне. Точные даты подтверждать ближе к поездке.</p>
+    </div>
+    <div class="label">Маршруты под 5–7 дней</div>
+    <div class="route">
+      <div class="route-opt">
+        <div class="route-opt-head">
+          <span class="route-opt-label">Вариант А · 7 дней</span>
+          <span class="route-opt-title">Классическое плато</span>
+        </div>
+        <div class="route-days">
+          <div class="route-day"><div class="route-day-n">Дни 1–2</div><div class="route-day-c"><h4>Дали</h4><p>Прилёт в Куньмин → скоростной поезд до Дали (~2 ч). Старый город, Три пагоды, велопрогулка вдоль озера Эрхай, деревня бай Сичжоу с утренним рынком.</p></div></div>
+          <div class="route-day"><div class="route-day-n">Дни 3–4</div><div class="route-day-c"><h4>Лицзян</h4><p>Поезд из Дали (~2 ч). Старый город наси (ЮНЕСКО), деревня Байша с фресками, виды на Нефритовую гору драконов (Юйлун).</p></div></div>
+          <div class="route-day"><div class="route-day-n">День 5</div><div class="route-day-c"><h4>Ущелье Прыгающего тигра</h4><p>Один из лучших треков Китая по Верхней тропе над рекой Цзиньша. Можно с ночёвкой в гестхаусе на тропе.</p></div></div>
+          <div class="route-day"><div class="route-day-n">Дни 6–7</div><div class="route-day-c"><h4>Шангри-Ла</h4><p>Тибетское плато 3200 м. Монастырь Сунцзаньлинь («малая Потала»), старый город Дукэцзун, нацпарк Пудацо. Акклиматизация к высоте.</p></div></div>
+        </div>
+      </div>
+      <div class="route-opt">
+        <div class="route-opt-head">
+          <span class="route-opt-label">Вариант Б · 5 дней</span>
+          <span class="route-opt-title">Без высоты</span>
+        </div>
+        <div class="route-days">
+          <div class="route-day"><div class="route-day-n">Дни 1–2</div><div class="route-day-c"><h4>Дали + Сичжоу</h4><p>Старый город, озеро Эрхай, деревни бай. Медленный темп.</p></div></div>
+          <div class="route-day"><div class="route-day-n">День 3</div><div class="route-day-c"><h4>Шаси</h4><p>Тихая деревня на древнем Чайно-конном пути — то, чем Лицзян был до туризма.</p></div></div>
+          <div class="route-day"><div class="route-day-n">Дни 4–5</div><div class="route-day-c"><h4>Лицзян</h4><p>Старый город, Байша, треккинг у Юйлун без подъёма на 3000+.</p></div></div>
+        </div>
+        <div class="route-note"><b>Совет:</b> Шангри-Ла на 3200 м требует акклиматизации — если высота некомфортна, вариант Б мягче. Из Лицзяна в Шангри-Ла — поезд ~1,5 ч или авто ~3 ч.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- main -->
+  <div class="tab-content" id="yunnan-main">
+    <div class="label">Обязательное</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Старый город Дали <span class="zh">大理古城</span></h3><p>Город народности бай у подножия гор Цаншань и озера Эрхай. Каменные улицы, ворота, традиционные дома, западные ворота с видом на горы. Лучше рано утром и вечером.</p></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Старый город Лицзян <span class="zh">丽江古城</span></h3><p>Лабиринт каналов и мостов народности наси, объект ЮНЕСКО. Днём туристический, но на рассвете и в дальних переулках сохраняет магию. Поднимитесь на холм Львов на закате.</p><div class="card-detail">ЮНЕСКО · <b>лучше до 8 утра</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Монастырь Сунцзаньлинь <span class="zh">松赞林寺</span></h3><p>Крупнейший тибетский буддийский монастырь Юньнани под Шангри-Ла, прозванный «малой Поталой». Золотые крыши, монахи, виды на долину. Сильное место.</p><div class="card-detail">Шангри-Ла · <b>~115 ¥</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Три пагоды <span class="zh">崇圣寺三塔</span></h3><p>Символ Дали — три древние пагоды IX–X вв., старейшая 69 м. Отражение в пруду — открыточный кадр. Комплекс Чуншэн за ними обширный.</p></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Озеро Эрхай <span class="zh">洱海</span></h3><p>Огромное горное озеро у Дали. Велосипед или электроскутер вдоль берега (целый день), деревни, поля, точки заката. Один из лучших дней всего маршрута.</p><div class="card-detail"><b>аренда вело ~30–50 ¥/день</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Старый город Дукэцзун <span class="zh">独克宗</span></h3><p>Тибетский старый город в Шангри-Ла с крупнейшим в мире молитвенным барабаном на холме (нужно несколько человек, чтобы его повернуть). Восстановлен после пожара.</p></div>
+    </div>
+  </div>
+
+  <!-- calm -->
+  <div class="tab-content" id="yunnan-calm">
+    <div class="label">Спокойное и аутентичное</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Деревня Шаси <span class="zh">沙溪</span></h3><p>Единственный сохранившийся рынок-станция на древнем Чайно-конном пути. Театральная площадь, храм, мощёные улицы, поля вокруг. Лицзян до того, как он стал толпой.</p></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Сичжоу <span class="zh">喜洲</span></h3><p>Деревня бай у Эрхай: дворы-усадьбы бай, утренний рынок, мастерские индиго-батика, знаменитые лепёшки сичжоу. Поля рапса и риса вокруг.</p></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Байша <span class="zh">白沙</span></h3><p>Старейшее поселение наси под Юйлун со средневековыми фресками Байша (смесь буддизма, даосизма, наси-дунба). Деревенский ритм, ремёсла, почти нет туристов.</p></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Озеро Лугу <span class="zh">泸沼湖</span></h3><p>Высокогорное озеро на границе Юньнани и Сычуани — родина матриархального народа мосо. Лодки-долблёнки, острова, тишина. Дальше от маршрута, но особенное.</p><div class="card-detail">далеко · для медленной поездки</div></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Шухэ <span class="zh">束河</span></h3><p>Старый город рядом с Лицзяном, тоже на Чайно-конном пути, но тише и зеленее. Хорошая база, если хочется атмосферы Лицзяна без его толп.</p></div>
+      <div class="card"><div class="badge b-nature"><span class="seal-mini zh">山</span>Природа</div><h3>Нацпарк Пудацо <span class="zh">普达措</span></h3><p>Первый национальный парк Китая по стандартам: альпийские озёра Шудоу и Бита, луга, леса, тибетские пастбища на 3500+ м. Прохлада и чистый воздух.</p><div class="card-detail">Шангри-Ла</div></div>
+    </div>
+  </div>
+
+  <!-- food -->
+  <div class="tab-content" id="yunnan-food">
+    <div class="label">Гастрономия Юньнани</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Лапша «через мост» <span class="zh">过桥米线</span></h3><p>Главное блюдо Юньнани: миска горячего бульона, в которую при вас опускают сырые ломтики, овощи и рисовую лапшу. Ритуал и вкус одновременно.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Дикие грибы <span class="zh">野生菌</span></h3><p>Август — пик грибного сезона. Морель, белые, мацутакэ, «куриные грибы». Грибной хого, жареные грибы. Регион славится этим на весь Китай.</p><div class="card-detail"><b>август = сезон грибов</b></div></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Юньнаньская ветчина <span class="zh">宣威火腿</span></h3><p>Сюаньвэйская ветчина — вяленая горная свинина, чуть похожа на хамон. В лепёшках, жареном рисе, как закуска. Местный специалитет.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Чай пуэр <span class="zh">普洱茶</span></h3><p>Юньнань — родина пуэра. Чайные с дегустацией, прессованные «блины» чая, старые деревья. Часть медленного ритма региона — посидеть в чайной.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Тибетская кухня <span class="zh">藏餐</span></h3><p>В Шангри-Ла: чай с маслом яка, цампа (ячменная мука), момо (пельмени), тушёная ячатина, ячий йогурт. Сытно и согревает на высоте.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Лепёшка сичжоу <span class="zh">喜洲粑粑</span></h3><p>Слоёная лепёшка из деревни Сичжоу — сладкая (роза/сахар) или солёная (зелень/ветчина), запечённая на углях. Уличная классика бай.</p></div>
+    </div>
+  </div>
+
+  <!-- event -->
+  <div class="tab-content" id="yunnan-event">
+    <div class="label">События первой половины августа</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">节</span>Событие</div><h3>Праздник факелов <span class="zh">火把节</span></h3><p>6–7 августа 2026 (по лунному календарю). Народности и и бай зажигают гигантские факелы и костры, устраивают шествия, скачки, борьбу. Бай в Дали — 7 августа, наси в Лицзяне — около 6–8 августа.</p><div class="card-detail">Дали / Лицзян · <b>даты уточнять</b></div></div>
+      <div class="card"><div class="badge b-out"><span class="seal-mini zh">节</span>Событие</div><h3>Сичан и Чусюн <span class="zh">西昌 · 楚雄</span></h3><p>Если важен масштаб — крупнейшие празднования Факелов проходят в Сичане (Ляншань, Сычуань) и Чусюне (Юньнань): тысячи факелов, ярмарки, состязания. Отдельная поездка.</p></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">茶</span>Лето</div><h3>Грибной и чайный сезон</h3><p>Август — не только Факелы: это пик сбора диких грибов и активный чайный сезон. Рынки ломятся от грибов, чайные деревни принимают гостей. Гастрономически лучшее время.</p></div>
+    </div>
+  </div>
+
+  <!-- tips -->
+  <div class="tab-content" id="yunnan-tips">
+    <div class="label">Лайфхаки · Юньнань</div>
+    <div class="tips">
+      <div class="tip"><span class="tip-icon">🏔</span><h4>Высота Шангри-Ла</h4><p>3200 м — возможна горная болезнь. Поднимайтесь постепенно (Дали 1900 → Лицзян 2400 → Шангри-Ла 3200), пейте воду, без алкоголя в первый день, не перенапрягайтесь.</p></div>
+      <div class="tip"><span class="tip-icon">🌦</span><h4>Климат и дожди</h4><p><b>16–26°C — рай в августовскую жару Китая.</b> «Сезон дождей» = короткие ливни во второй половине дня, утра обычно ясные. Берите слой потеплее на вечер и дождевик.</p></div>
+      <div class="tip"><span class="tip-icon">🚄</span><h4>Поезда между городами</h4><p>Скоростная линия Куньмин–Дали–Лицзян: ~2 ч между точками. До Шангри-Ла — новая ж/д из Лицзяна (~1,5 ч). Билеты на Trip.com заранее, паспорт обязателен.</p></div>
+      <div class="tip"><span class="tip-icon">🥾</span><h4>Ущелье Прыгающего тигра</h4><p>Верхняя тропа (High Trail) — 2 дня с ночёвкой в гестхаусе или 1 длинный день. «28 поворотов» — тяжёлый участок. Не путать с нижней дорогой для авто.</p></div>
+      <div class="tip"><span class="tip-icon">🌿</span><h4>Грибы — осторожно</h4><p>Ешьте дикие грибы только в ресторанах. Юньнань ежегодно фиксирует отравления непрожаренными грибами — местные знают, как готовить, не экспериментируйте сами.</p></div>
+      <div class="tip"><span class="tip-icon">🎒</span><h4>Темп</h4><p>Не пытайтесь объять всё за 5 дней. Юньнань — про медленность: деревни, чайные, озеро. Лучше меньше точек, но глубже, чем галопом по плато.</p></div>
+    </div>
+  </div>
 </section>
 
-<section id="barcelona" class="city-section">
-    <div class="city-header"><h2 class="city-name barcelona">Барселона</h2><div class="city-meta">8–10 августа 2026<br>Суббота–Понедельник · 3 дня</div></div>
-    <div class="tabs" id="barcelona-tabs">
-        <div class="tab active" onclick="switchTab('barcelona','events')">События</div>
-        <div class="tab" onclick="switchTab('barcelona','must')">Обязательное</div>
-        <div class="tab" onclick="switchTab('barcelona','niche')">Нишевое</div>
-        <div class="tab" onclick="switchTab('barcelona','food')">Еда</div>
-        <div class="tab" onclick="switchTab('barcelona','outside')">Окрестности</div>
-        <div class="tab" onclick="switchTab('barcelona','tips')">Лайфхаки</div>
+<hr class="divider">
+
+<!-- ═══════════ ГУЙЛИНЬ ═══════════ -->
+<section id="guilin" class="region">
+  <div class="region-head">
+    <div class="region-title-wrap">
+      <span class="region-zh c-guilin">桂林</span>
+      <span class="region-name">Гуйлинь · Яншо</span>
     </div>
-    <div class="tab-content active" id="barcelona-events"></div>
-    <div class="tab-content" id="barcelona-must"></div>
-    <div class="tab-content" id="barcelona-niche"></div>
-    <div class="tab-content" id="barcelona-food"></div>
-    <div class="tab-content" id="barcelona-outside"></div>
-    <div class="tab-content" id="barcelona-tips"></div>
+    <div class="region-meta">Река Ли · Лунцзи<br>3–5 дней · 24–34°C<br>самая «открыточная» природа</div>
+  </div>
+  <p class="region-tagline">Карстовые горы-«пальцы», зеркальные реки, рисовые террасы. Те самые пейзажи с китайской живописи и купюры в 20 юаней. Летом сочно-зелёные, но жаркие и влажные.</p>
+
+  <div class="tabs" id="guilin-tabs">
+    <div class="tab active t-guilin" onclick="tab('guilin','route')">Маршрут</div>
+    <div class="tab t-guilin" onclick="tab('guilin','main')">Главное</div>
+    <div class="tab t-guilin" onclick="tab('guilin','calm')">Небанальное</div>
+    <div class="tab t-guilin" onclick="tab('guilin','food')">Еда</div>
+    <div class="tab t-guilin" onclick="tab('guilin','tips')">Лайфхаки</div>
+  </div>
+
+  <div class="tab-content active" id="guilin-route">
+    <div class="label">Маршрут под 3–5 дней</div>
+    <div class="route">
+      <div class="route-opt">
+        <div class="route-opt-head"><span class="route-opt-label">5 дней</span><span class="route-opt-title">Река и террасы</span></div>
+        <div class="route-days">
+          <div class="route-day"><div class="route-day-n">День 1</div><div class="route-day-c"><h4>Гуйлинь</h4><p>Прилёт. Пещера Тростниковой флейты, холм Сложенной парчи, вечер у озёр Жунху и Шаньху с пагодами Солнца и Луны.</p></div></div>
+          <div class="route-day"><div class="route-day-n">День 2</div><div class="route-day-c"><h4>Круиз по реке Ли</h4><p>4 ч на теплоходе Гуйлинь → Яншо сквозь карстовые горы — кульминация поездки. Тот самый пейзаж с купюры 20 ¥ у Синпина.</p></div></div>
+          <div class="route-day"><div class="route-day-n">День 3</div><div class="route-day-c"><h4>Яншо</h4><p>Велосипед вдоль реки Юйлун, деревни, бамбуковый плот, рассвет на горе Сянгун. Вечером — шоу «Впечатление. Лю Саньцзе» на воде.</p></div></div>
+          <div class="route-day"><div class="route-day-n">Дни 4–5</div><div class="route-day-c"><h4>Рисовые террасы Лунцзи</h4><p>Террасы «Хребет дракона» у деревень Пинъань и Дачжай народностей чжуан и яо. Ночёвка в деревне, рассвет над террасами.</p></div></div>
+        </div>
+        <div class="route-note"><b>Минимум:</b> при 3 днях — Гуйлинь → круиз → Яншо без террас. Террасы добавляют 1–2 дня, но это лучшая «тихая» часть.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="guilin-main">
+    <div class="label">Обязательное</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Круиз по реке Ли <span class="zh">漓江</span></h3><p>4 часа по реке сквозь карстовые пики Гуйлинь → Яншо — один из красивейших речных маршрутов мира. Сидите на верхней палубе. Лучший участок — у Синпина.</p><div class="card-detail"><b>~4 часа · бронировать заранее</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Рисовые террасы Лунцзи <span class="zh">龙脊梯田</span></h3><p>«Хребет дракона» — ярусы рисовых полей по склонам, веками вырезанные народностями. Летом ярко-зелёные. Деревни Пинъань (классика) и Дачжай (тише, выше).</p><div class="card-detail"><b>2 ч от Гуйлиня</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Синпин <span class="zh">兴坪</span></h3><p>Древний городок на реке Ли — тот самый вид с купюры в 20 юаней (гора с пятью пальцами, отражённая в воде). Старая улица, закат на пристани.</p></div>
+      <div class="card"><div class="badge b-nature"><span class="seal-mini zh">山</span>Природа</div><h3>Река Юйлун <span class="zh">遇龙河</span></h3><p>Тихий приток без шумных теплоходов — бамбуковые плоты и велодорожки вдоль воды, деревни и древние мосты. Лучшая «медленная» альтернатива большой реке.</p><div class="card-detail">Яншо</div></div>
+      <div class="card"><div class="badge b-nature"><span class="seal-mini zh">山</span>Природа</div><h3>Гора Сянгун <span class="zh">相公山</span></h3><p>Лучшая смотровая на излучину реки Ли — особенно на рассвете в туман, когда пики плывут над водой. Сюда едут фотографы со всего Китая.</p><div class="card-detail"><b>на рассвете</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Пещера Тростниковой флейты <span class="zh">芦笛岩</span></h3><p>Подсвеченная карстовая пещера в Гуйлине со сталактитами и подземным озером-зеркалом. Эффектная, хоть и туристическая. Хороша в жару — внутри прохладно.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="guilin-calm">
+    <div class="label">Небанальное</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Деревня Дачжай <span class="zh">大寨</span></h3><p>Верхняя деревня яо на террасах Лунцзи — выше и спокойнее Пинъаня. Канатка к лучшим видовым точкам, ночёвка в деревянных гестхаусах над облаками.</p></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Сельский Яншо на велосипеде</h3><p>Возьмите велосипед и уезжайте от центра Яншо в поля и деревни вдоль Юйлун: мандариновые рощи, буйволы, мосты династии Мин. Настоящая сельская Гуанси.</p></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Гора Лаочжай <span class="zh">老寨山</span></h3><p>Крутой подъём над Синпином (~20 мин) к беседке с панорамой излучины реки Ли. Бесплатно, нетуристично, один из лучших закатов района.</p></div>
+      <div class="card"><div class="badge b-nature"><span class="seal-mini zh">水</span>Природа</div><h3>Бамбуковый плот на рассвете</h3><p>Раннее утро на Юйлун, пока нет групп: туман над водой, тишина, отражения пиков. Договоритесь с лодочником с вечера на 6 утра.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="guilin-food">
+    <div class="label">Кухня Гуанси</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Пивная рыба <span class="zh">啤酒鱼</span></h3><p>Фирменное блюдо Яншо: свежая речная рыба, тушённая с пивом, томатами и перцем. Едят прямо у реки. Главный гастрономический специалитет района.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Рисовая лапша Гуйлинь <span class="zh">桂林米粉</span></h3><p>Лапша с хрустящей свининой, маринованными бобами и бульоном — местный завтрак №1. Дёшево, на каждом углу, по-настоящему вкусно.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Масляный чай яо <span class="zh">油茶</span></h3><p>На террасах Лунцзи: чай, обжаренный с имбирём и арахисом, взбитый до густоты — солёный, бодрящий, согревающий. Ритуал гостеприимства народностей.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Рис в бамбуке <span class="zh">竹筒饭</span></h3><p>Клейкий рис, запечённый внутри бамбукового стебля на углях — впитывает аромат бамбука. Уличная еда деревень чжуан и яо.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="guilin-tips">
+    <div class="label">Лайфхаки · Гуйлинь</div>
+    <div class="tips">
+      <div class="tip"><span class="tip-icon">🌡</span><h4>Жара и влажность</h4><p>Август — <b>24–34°C, очень влажно</b>, возможны короткие ливни. Зато всё ярко-зелёное. Планируйте активности на утро, в полдень — пещеры и тень. Вода, SPF, дождевик.</p></div>
+      <div class="tip"><span class="tip-icon">⛵</span><h4>Круиз — заранее</h4><p>Билеты на теплоход по реке Ли разбирают летом. Бронируйте за несколько дней. Бамбуковые плоты на отдельных участках — на месте.</p></div>
+      <div class="tip"><span class="tip-icon">🚄</span><h4>Как добраться</h4><p>Скоростные поезда Гуйлинь связывают с Гуанчжоу (~2,5 ч) и другими хабами. До Лунцзи и Яншо — автобусы/такси. Аэропорт Гуйлинь Лянцзян.</p></div>
+      <div class="tip"><span class="tip-icon">🚲</span><h4>Велосипед в Яншо</h4><p>Лучший способ увидеть сельскую местность. Аренда дёшева, электровелосипед для жары удобнее. Уезжайте от Западной улицы — она туристическая.</p></div>
+    </div>
+  </div>
 </section>
 
-<section id="prague" class="city-section">
-    <div class="city-header"><h2 class="city-name prague">Прага</h2><div class="city-meta">11–12 августа 2026<br>Вторник–Среда · 2 дня</div></div>
-    <div class="tabs" id="prague-tabs">
-        <div class="tab active" onclick="switchTab('prague','events')">События</div>
-        <div class="tab" onclick="switchTab('prague','must')">Обязательное</div>
-        <div class="tab" onclick="switchTab('prague','niche')">Нишевое</div>
-        <div class="tab" onclick="switchTab('prague','food')">Еда</div>
-        <div class="tab" onclick="switchTab('prague','outside')">Окрестности</div>
-        <div class="tab" onclick="switchTab('prague','tips')">Лайфхаки</div>
+<hr class="divider">
+
+<!-- ═══════════ ЧЭНДУ ═══════════ -->
+<section id="chengdu" class="region">
+  <div class="region-head">
+    <div class="region-title-wrap">
+      <span class="region-zh c-chengdu">成都</span>
+      <span class="region-name">Чэнду · Сычуань</span>
     </div>
-    <div class="tab-content active" id="prague-events"></div>
-    <div class="tab-content" id="prague-must"></div>
-    <div class="tab-content" id="prague-niche"></div>
-    <div class="tab-content" id="prague-food"></div>
-    <div class="tab-content" id="prague-outside"></div>
-    <div class="tab-content" id="prague-tips"></div>
+    <div class="region-meta">Панды · Лэшань · Цинчэн<br>4–6 дней · 24–34°C город<br>панды + горы + острая кухня</div>
+  </div>
+  <p class="region-tagline">Расслабленная «чайная» столица Сычуани, гигантские панды, древние даосские горы и величайшая каменная статуя Будды. А рядом — прохладная западная Сычуань с альпийскими долинами.</p>
+
+  <div class="tabs" id="chengdu-tabs">
+    <div class="tab active t-chengdu" onclick="tab('chengdu','route')">Маршрут</div>
+    <div class="tab t-chengdu" onclick="tab('chengdu','main')">Главное</div>
+    <div class="tab t-chengdu" onclick="tab('chengdu','calm')">Природа</div>
+    <div class="tab t-chengdu" onclick="tab('chengdu','food')">Еда</div>
+    <div class="tab t-chengdu" onclick="tab('chengdu','tips')">Лайфхаки</div>
+  </div>
+
+  <div class="tab-content active" id="chengdu-route">
+    <div class="label">Маршрут под 4–6 дней</div>
+    <div class="route">
+      <div class="route-opt">
+        <div class="route-opt-head"><span class="route-opt-label">4 дня</span><span class="route-opt-title">Чэнду и окрестности</span></div>
+        <div class="route-days">
+          <div class="route-day"><div class="route-day-n">День 1</div><div class="route-day-c"><h4>Чэнду</h4><p>Улица Цзиньли и Куаньчжай, чайный дом в парке Жэньминь, храм Вэньшу. Вечером — острый хого и квартал Тайгу-Ли.</p></div></div>
+          <div class="route-day"><div class="route-day-n">День 2</div><div class="route-day-c"><h4>Панды</h4><p>База разведения больших панд с раннего утра (к 8–9, пока активны кормление). После обеда — музей Цзиньша (древняя культура Шу).</p></div></div>
+          <div class="route-day"><div class="route-day-n">День 3</div><div class="route-day-c"><h4>Лэшань + Эмэйшань</h4><p>Большой Будда в Лэшане (поезд ~1 ч). По желанию — священная гора Эмэйшань с храмами и обезьянами.</p></div></div>
+          <div class="route-day"><div class="route-day-n">День 4</div><div class="route-day-c"><h4>Цинчэншань + Дуцзянъянь</h4><p>Даосская гора Цинчэн и древняя ирригационная система Дуцзянъянь (обе ЮНЕСКО) — зелено и прохладно.</p></div></div>
+        </div>
+      </div>
+      <div class="route-opt">
+        <div class="route-opt-head"><span class="route-opt-label">6 дней</span><span class="route-opt-title">+ Западная Сычуань</span></div>
+        <div class="route-note">Добавьте 2 дня на прохладную высокогорную Сычуань: <b>Сыгунян</b> (альпийские долины, треккинг, 8–20°C) или долину <b>Цзючжайгоу</b> (бирюзовые озёра и водопады, ЮНЕСКО). Спасение от августовской жары равнины. Дороги горные — закладывайте время.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="chengdu-main">
+    <div class="label">Обязательное</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>База больших панд <span class="zh">大熊猫基地</span></h3><p>Исследовательская база на севере Чэнду: десятки панд, включая малышей. Приезжать к открытию (7:30–8:00) — утром панды активны и едят, днём спят. Огромная зелёная территория.</p><div class="card-detail"><b>к 8 утра · ~55 ¥</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Большой Будда Лэшань <span class="zh">乐山大佛</span></h3><p>71-метровая статуя Будды, высеченная в скале в 713–803 гг. — крупнейшая каменная статуя Будды в мире (ЮНЕСКО). Спуститься по лестнице вдоль фигуры или увидеть с лодки.</p><div class="card-detail">ЮНЕСКО · <b>поезд ~1 ч</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Гора Цинчэн <span class="zh">青城山</span></h3><p>Одна из колыбелей даосизма — лесистая гора с древними храмами, павильонами и тропами в тумане. Прохладно, зелено, медитативно. ЮНЕСКО.</p><div class="card-detail">ЮНЕСКО</div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Дуцзянъянь <span class="zh">都江堰</span></h3><p>Ирригационная система III в. до н.э., работающая до сих пор — инженерное чудо древнего Китая без плотины. ЮНЕСКО, рядом с Цинчэншань.</p><div class="card-detail">ЮНЕСКО</div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Чайный дом в парке Жэньминь <span class="zh">鹤鸣茶社</span></h3><p>Чайная Хэмин в Народном парке — сердце чэндуской культуры досуга. Бамбуковые кресла, чай с доливом, чистка ушей, маджонг. Самое чэндуское занятие — просто сидеть.</p></div>
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">古</span>История</div><h3>Музей Цзиньша <span class="zh">金沙遗址</span></h3><p>На месте раскопок загадочной бронзовой культуры Шу (~1000 до н.э.): золотая «птица солнца», маски, нефрит. Совсем не похоже на остальной древний Китай.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="chengdu-calm">
+    <div class="label">Природа и прохлада</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-nature"><span class="seal-mini zh">山</span>Природа</div><h3>Сыгунян <span class="zh">四姑娘山</span></h3><p>«Четыре девушки» — снежные вершины и три альпийские долины западной Сычуани (Чангпин, Хайцзы, Шуанцяо). Треккинг, луга, як-пастбища. <b>8–20°C</b> — спасение от жары.</p><div class="card-detail"><b>~4–5 ч от Чэнду</b></div></div>
+      <div class="card"><div class="badge b-nature"><span class="seal-mini zh">水</span>Природа</div><h3>Долина Цзючжайгоу <span class="zh">九寨沟</span></h3><p>Каскады бирюзовых озёр, водопады, осенние леса в тибетских горах. ЮНЕСКО, одно из красивейших мест Китая. Далеко и популярно — лучше с ночёвкой.</p><div class="card-detail">ЮНЕСКО · далеко</div></div>
+      <div class="card"><div class="badge b-nature"><span class="seal-mini zh">山</span>Природа</div><h3>Эмэйшань <span class="zh">峨眉山</span></h3><p>Священная буддийская гора рядом с Лэшанем: храмы на склонах, дикие обезьяны, «море облаков» с Золотой вершины (3099 м). Прохладно наверху.</p><div class="card-detail">ЮНЕСКО</div></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="chengdu-food">
+    <div class="label">Сычуаньская кухня</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Хого <span class="zh">火锅</span></h3><p>Сычуаньский острый котёл с «онемляющим» перцем хуацзяо — главный ритуал Чэнду. Котёл-инь-ян (острый/неострый) для непривычных. Вечер за хого — обязателен.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Мапо-тофу <span class="zh">麻婆豆腐</span></h3><p>Тофу в остро-маслянистом соусе с фаршем и хуацзяо — родом именно из Чэнду. Пробуйте в исторических заведениях, а не туристических.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Уличная еда Цзиньли <span class="zh">锦里</span></h3><p>Старая улица Цзиньли и Куаньчжай — витрина сычуаньского стритфуда: даньдань-лапша, чуаньчуань (шашлычки в бульоне), острый чиснок, сахарная живопись.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Чуаньчуань <span class="zh">串串香</span></h3><p>Народная версия хого: берёте шпажки с любыми ингредиентами и варите в общем остром бульоне, платите за палочки. Шумно, дёшево, по-чэндуски.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="chengdu-tips">
+    <div class="label">Лайфхаки · Чэнду</div>
+    <div class="tips">
+      <div class="tip"><span class="tip-icon">🐼</span><h4>Панды — рано утром</h4><p>Главный лайфхак: к открытию <b>7:30–8:00</b>. Утром панды кормятся и активны, к полудню засыпают. Идите сразу к вольерам малышей. Билеты онлайн заранее.</p></div>
+      <div class="tip"><span class="tip-icon">🌡</span><h4>Жара города vs горы</h4><p>Чэнду в августе <b>24–34°C, влажно и пасмурно</b>. Западная Сычуань (Сыгунян, Цзючжайгоу) — 8–20°C. Комбинируйте: город + 1–2 дня в прохладных горах.</p></div>
+      <div class="tip"><span class="tip-icon">🌶</span><h4>Острота</h4><p>Сычуаньская острота «онемляет» язык (хуацзяо). Просите «微辣» (вэйла, чуть остро), если непривычны. Йогурт/соевое молоко гасят жжение лучше воды.</p></div>
+      <div class="tip"><span class="tip-icon">🍵</span><h4>Замедлиться</h4><p>Чэнду — про неспешность. Проведите полдня в чайной за чаем, маджонгом и наблюдением. Это и есть местная культура, а не пауза между делами.</p></div>
+    </div>
+  </div>
 </section>
 
-<button class="route-toggle" onclick="toggleRoutePanel()">📋 Мой маршрут</button>
-<div class="my-route-panel" id="routePanel">
-    <h3 style="margin-bottom:16px;font-weight:300;">Общий маршрут</h3>
-    <div class="route-filters" id="routeFilters">
-        <button class="active-filter" onclick="setRouteFilter('all')">Все</button>
-        <button onclick="setRouteFilter('user1')">Польз. 1</button>
-        <button onclick="setRouteFilter('user2')">Польз. 2</button>
-        <button onclick="setRouteFilter('both')">Оба идут</button>
-        <button onclick="setRouteFilter('conflict')">Разногласия</button>
-    </div>
-    <div id="routeList" class="route-empty">Пока ничего не выбрано. Нажимайте «Идем» или «Опционально» на карточках.</div>
-    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
-        <button onclick="exportRoute()" style="padding:6px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;">Экспорт</button>
-        <button onclick="importRoutePrompt()" style="padding:6px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;">Импорт</button>
-        <button onclick="clearRoute()" style="padding:6px 12px;background:var(--surface2);border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:'DM Mono',monospace;font-size:10px;">Очистить всё</button>
-    </div>
-</div>
+<hr class="divider">
 
-<footer>Мюнхен · Барселона · Прага · Август 2026<br>Проверяйте актуальное расписание мероприятий ближе к дате поездки</footer>
+<!-- ═══════════ ПЕКИН ═══════════ -->
+<section id="beijing" class="region">
+  <div class="region-head">
+    <div class="region-title-wrap">
+      <span class="region-zh c-beijing">北京</span>
+      <span class="region-name">Пекин</span>
+    </div>
+    <div class="region-meta">Стена · Гугун · хутуны<br>3–4 дня · 26–35°C<br>мегаполис ради истории</div>
+  </div>
+  <p class="region-tagline">Если включать большой город — то этот: тысячелетняя имперская столица. Великая стена, крупнейший дворцовый комплекс мира, храмы и переулки-хутуны. Жарко, но воздух суше южного.</p>
+
+  <div class="tabs" id="beijing-tabs">
+    <div class="tab active t-beijing" onclick="tab('beijing','main')">Главное</div>
+    <div class="tab t-beijing" onclick="tab('beijing','calm')">Небанальное</div>
+    <div class="tab t-beijing" onclick="tab('beijing','food')">Еда</div>
+    <div class="tab t-beijing" onclick="tab('beijing','skip')">Пропустить</div>
+    <div class="tab t-beijing" onclick="tab('beijing','tips')">Лайфхаки</div>
+  </div>
+
+  <div class="tab-content active" id="beijing-main">
+    <div class="label">Обязательное</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Великая стена · Мутяньюй <span class="zh">慕田峪</span></h3><p>Лучший участок для посещения: реставрирован, в горах, заметно тише Бадалина. Канатка наверх, тобоган вниз. Летом запускают вечерние туры. На рассвете почти пусто.</p><div class="card-detail"><b>~1,5 ч от центра · вечерние туры летом</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Запретный город <span class="zh">故宫</span></h3><p>Крупнейший сохранившийся дворцовый комплекс мира — 9000 залов, императорская ось, сокровищница, сад. Билеты строго онлайн заранее (часто распроданы за дни). На осмотр — полдня.</p><div class="card-detail"><b>билеты онлайн, за дни вперёд</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Храм Неба <span class="zh">天坛</span></h3><p>Идеал имперской архитектуры — Зал жатвенных молитв и парк вокруг, где местные с утра занимаются тайцзи, поют и играют. Приходите рано ради этой жизни парка.</p></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Хутуны Шичахай <span class="zh">什刹海</span></h3><p>Старые переулки вокруг озёр Хоухай: серые дворы-сыхэюани, велорикши, дворы, бары у воды. Поднимитесь на Барабанную и Колокольную башни. Душа старого Пекина.</p></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Летний дворец <span class="zh">颐和园</span></h3><p>Императорская летняя резиденция: озеро Куньмин, Длинная галерея, холм Долголетия. Огромный парк для прогулки на полдня. Спасает в жару — вода и тень.</p><div class="card-detail">ЮНЕСКО</div></div>
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">古</span>История</div><h3>Храм Конфуция и Гоцзыцзянь <span class="zh">孔庙</span></h3><p>Тихий храмовый комплекс с древними кипарисами и стелами имперских экзаменов — рядом с хутунами Гулоу, но без толп. Атмосфера учёного старого Китая.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="beijing-calm">
+    <div class="label">Небанальное в мегаполисе</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">隐</span>Небанальное</div><h3>Дикая стена · Цзянькоу <span class="zh">箭扣</span></h3><p>Неотреставрированная «дикая» Великая стена для опытных — заросшая, крошащаяся, драматичная. Не для всех и требует осторожности, но это стена без перил и толп.</p><div class="card-detail">для подготовленных</div></div>
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">隐</span>Небанальное</div><h3>Парк Цзиншань на закате <span class="zh">景山</span></h3><p>Холм прямо за Запретным городом — единственная точка, откуда видно золотые крыши Гугуна сверху, на фоне заката и оси города. Приходите за час до заката.</p></div>
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">隐</span>Небанальное</div><h3>798 Art District <span class="zh">798艺术区</span></h3><p>Бывший военный завод в стиле баухаус — теперь главный кластер современного искусства Китая: галереи, инсталляции, кафе, стрит-арт. Контраст с имперским Пекином.</p></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Ламаистский храм Юнхэгун <span class="zh">雍和宫</span></h3><p>Действующий тибетский буддийский монастырь в центре города — благовония, молящиеся, 18-метровый Будда из цельного сандала. Живая вера, а не музей.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="beijing-food">
+    <div class="label">Пекинская кухня</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Утка по-пекински <span class="zh">北京烤鸭</span></h3><p>Обязательный ритуал: хрустящая кожа, блинчики, соус хойсин, лук. Историческое заведение (напр. Сыцзи Миньфу или старая Цюаньцзюйдэ) — стоит брони. Утку режут при вас.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Лапша чжацзянмянь <span class="zh">炸酱面</span></h3><p>Пекинская лапша с густым соусом из ферментированных бобов и свинины и свежими овощами. Простая народная классика — ищите в старых лапшичных хутунов.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Цзяньбин <span class="zh">煎饼</span></h3><p>Утренний уличный блинчик с яйцом, хрустящим листом и соусом, сворачивается при вас. Лучший пекинский завтрак на ходу — у выходов метро по утрам.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Гуйцзе — улица призраков <span class="zh">簋街</span></h3><p>Ночная улица ресторанов, работающих допоздна: острые раки, хого, шашлычки. Красные фонари, очереди, движуха. Гастрономическая ночь Пекина.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="beijing-skip">
+    <div class="label">Что можно пропустить</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-skip"><span class="seal-mini zh">略</span>Пропустить</div><h3>Великая стена · Бадалин <span class="zh">八达岭</span></h3><p>Ближайший и самый известный участок — потому и самый переполненный, особенно летом. Мутяньюй в 1,5 ч даёт те же виды без толп. Бадалин — только если совсем нет времени.</p></div>
+      <div class="card"><div class="badge b-skip"><span class="seal-mini zh">略</span>Пропустить</div><h3>Шопинг-улица Ванфуцзин днём</h3><p>Главная торговая улица превратилась в обычный молл с сетевыми магазинами. «Рынок экзотической еды» здесь — туристический аттракцион. Хутуны интереснее.</p></div>
+      <div class="card"><div class="badge b-skip"><span class="seal-mini zh">略</span>Пропустить</div><h3>Олимпийский парк 2008</h3><p>«Птичье гнездо» и «Водный куб» эффектны на фото, но ехать специально ради пустой спортивной зоны на окраине не стоит, если время ограничено.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="beijing-tips">
+    <div class="label">Лайфхаки · Пекин</div>
+    <div class="tips">
+      <div class="tip"><span class="tip-icon">🎫</span><h4>Запретный город — заранее</h4><p>Билеты <b>только онлайн</b> по паспорту, дневной лимит, распродаются за несколько дней летом. Бронируйте сразу, как определитесь с датой. Вход с южной стороны (Умэнь).</p></div>
+      <div class="tip"><span class="tip-icon">🌡</span><h4>Жара суше</h4><p>Август <b>26–35°C</b>, но воздух суше южного Китая. Бывают грозы. Вода, головной убор, ранний старт. Дворцовые парки (Летний дворец, Бэйхай) — тень и вода.</p></div>
+      <div class="tip"><span class="tip-icon">🚄</span><h4>Стена без толп</h4><p>На Мутяньюй — к открытию или на вечерний тур. Добираться: организованный трансфер, такси Didi или автобус. Канатка экономит силы в жару.</p></div>
+      <div class="tip"><span class="tip-icon">🚇</span><h4>Метро</h4><p>Огромное, дешёвое, с англ. указателями и досмотром на входе. Карта в Alipay/WeChat или транспортная. Пробки наземные сильные — метро быстрее.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════ ШАНХАЙ ═══════════ -->
+<section id="shanghai" class="region">
+  <div class="region-head">
+    <div class="region-title-wrap">
+      <span class="region-zh c-shanghai">上海</span>
+      <span class="region-name">Шанхай</span>
+    </div>
+    <div class="region-meta">Бунд · концессия · музеи<br>2–3 дня · 28–35°C<br>мегаполис ради контраста</div>
+  </div>
+  <p class="region-tagline">Витрина современного Китая и ар-деко 1920-х в одном городе. Хорош как входная/выходная точка на 2–3 дня: набережная Бунд, платановые улицы Французской концессии, великие музеи. Жаркий и влажный.</p>
+
+  <div class="tabs" id="shanghai-tabs">
+    <div class="tab active t-shanghai" onclick="tab('shanghai','main')">Главное</div>
+    <div class="tab t-shanghai" onclick="tab('shanghai','calm')">Небанальное</div>
+    <div class="tab t-shanghai" onclick="tab('shanghai','food')">Еда</div>
+    <div class="tab t-shanghai" onclick="tab('shanghai','skip')">Пропустить</div>
+    <div class="tab t-shanghai" onclick="tab('shanghai','tips')">Лайфхаки</div>
+  </div>
+
+  <div class="tab-content active" id="shanghai-main">
+    <div class="label">Обязательное</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Набережная Бунд <span class="zh">外滩</span></h3><p>Линия колониальных ар-деко зданий 1920-х вдоль реки Хуанпу напротив футуристического Пудуна. Днём — архитектура, ночью — подсветка небоскрёбов. Символ Шанхая.</p><div class="card-detail"><b>днём и ночью — разный город</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Французская концессия <span class="zh">法租界</span></h3><p>Платановые улицы (Уканлу, Аньфулу), особняки-шикумэнь, бутики, кофейни. Лучший район для медленной прогулки пешком. Самая «нешанхайская» атмосфера Шанхая.</p></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Сад Юйюань <span class="zh">豫园</span></h3><p>Классический китайский сад 1577 г. в Старом городе: павильоны, пруды, камни, драконьи стены. Вокруг — базар и чайный дом Хусинтин на воде. Прийти до открытия толп.</p></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Шанхайский музей <span class="zh">上海博物馆</span></h3><p>Одна из величайших коллекций китайского искусства — бронза, керамика, каллиграфия, нефрит. Новый корпус East на 3 этажа. Вход бесплатный, нужна предварительная бронь.</p><div class="card-detail"><b>бесплатно · бронь заранее</b></div></div>
+      <div class="card"><div class="badge b-must"><span class="seal-mini zh">必</span>Главное</div><h3>Смотровая Shanghai Tower <span class="zh">上海中心</span></h3><p>118–119 этажи второго по высоте здания мира (632 м) — лучший вид на город сверху, выше остальных. Скоростной лифт. В ясный вечер — захватывает.</p><div class="card-detail">Пудун · <b>~180 ¥</b></div></div>
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">古</span>История</div><h3>Городок Чжуцзяцзяо <span class="zh">朱家角</span></h3><p>Водный городок («Венеция Шанхая») в часе от центра: каналы, древние мосты, лодки, старые дома. Полудневная вылазка из мегаполиса в старый Цзяннань.</p><div class="card-detail">~1 ч от центра</div></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="shanghai-calm">
+    <div class="label">Небанальное в мегаполисе</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">隐</span>Небанальное</div><h3>Квартал Чжанъюань <span class="zh">张园</span></h3><p>Отреставрированный квартал шикумэнь Чжанъюань — лучший пример того, как Шанхай переосмысляет своё ар-деко наследие: бутики и кафе в исторических переулках.</p></div>
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">隐</span>Небанальное</div><h3>M50 на Сучжоухэ <span class="zh">M50</span></h3><p>Арт-кластер в бывших текстильных фабриках на канале Сучжоу — галереи, мастерские, граффити. Шанхайский ответ пекинскому 798, камернее и центральнее.</p></div>
+      <div class="card"><div class="badge b-hidden"><span class="seal-mini zh">隐</span>Небанальное</div><h3>Музей Long / West Bund <span class="zh">龙美术馆</span></h3><p>Набережная West Bund — кластер частных музеев современного искусства (Long Museum, Yuz) в бывшей промзоне у реки. Тихая прогулочная альтернатива Бунду.</p></div>
+      <div class="card"><div class="badge b-calm"><span class="seal-mini zh">静</span>Тихое</div><h3>Храм Цзинъань на рассвете <span class="zh">静安寺</span></h3><p>Золотой буддийский храм среди небоскрёбов — сюрреалистичный контраст старого и нового. Рано утром, до открытия офисов, особенно фотогеничен.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="shanghai-food">
+    <div class="label">Шанхайская кухня</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Сяолунбао <span class="zh">小笼包</span></h3><p>Паровые пельмени с бульоном внутри — гордость Шанхая. Надкусить, выпить бульон, съесть. Историческое место — Jia Jia Tang Bao или старый Nanxiang в саду Юй.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Шэнцзянь <span class="zh">生煎</span></h3><p>Жареные снизу пирожки с мясом и бульоном, хрустящее дно, кунжут. Утренний шанхайский стритфуд. Очереди у лучших лавок с утра — хороший знак.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>«Пьяный» краб и хуншао <span class="zh">本帮菜</span></h3><p>Бэньбан — местная кухня: сладко-солёные тушёные блюда (хуншао — свинина в соевом соусе), «пьяные» креветки в вине. Жирно, сладко, по-шанхайски.</p></div>
+      <div class="card"><div class="badge b-food"><span class="seal-mini zh">食</span>Еда</div><h3>Кофейная сцена концессии <span class="zh">咖啡</span></h3><p>У Шанхая больше кофеен, чем у любого города мира. Французская концессия — эпицентр: спешелти-обжарка, дворики, ар-деко интерьеры. Спасение в жару.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="shanghai-skip">
+    <div class="label">Что можно пропустить</div>
+    <div class="cards">
+      <div class="card"><div class="badge b-skip"><span class="seal-mini zh">略</span>Пропустить</div><h3>Телебашня «Жемчужина Востока» <span class="zh">东方明珠</span></h3><p>Узнаваемый силуэт, но смотровая хуже и дороже относительно Shanghai Tower, а очереди длиннее. Башня красивее снаружи (с Бунда), чем вид из неё.</p></div>
+      <div class="card"><div class="badge b-skip"><span class="seal-mini zh">略</span>Пропустить</div><h3>Базар у сада Юй (только шопинг)</h3><p>Сам сад обязателен, но окружающий рынок — туристический китч с завышенными ценами. Посмотрите архитектуру, но за покупками и едой идите в концессию.</p></div>
+      <div class="card"><div class="badge b-skip"><span class="seal-mini zh">略</span>Пропустить</div><h3>Нанкинская пешеходная улица</h3><p>Главная торговая улица — неоновая, людная, сетевая. Пройти раз ради зрелища можно, но это не та аутентичность, ради которой стоит тратить время.</p></div>
+    </div>
+  </div>
+
+  <div class="tab-content" id="shanghai-tips">
+    <div class="label">Лайфхаки · Шанхай</div>
+    <div class="tips">
+      <div class="tip"><span class="tip-icon">🌡</span><h4>Жара и тайфуны</h4><p>Август <b>28–35°C, очень влажно</b>, «ощущается» 40°C+. Возможны тайфуны с побережья. Планируйте музеи и кофейни на полдень, прогулки — утро и вечер.</p></div>
+      <div class="tip"><span class="tip-icon">🚄</span><h4>Маглев и метро</h4><p>Из аэропорта Пудун — маглев до 430 км/ч (~8 мин). Метро огромное и удобное. Карта в Alipay/WeChat. Между городами — скоростные поезда из Хунцяо.</p></div>
+      <div class="tip"><span class="tip-icon">🎫</span><h4>Музеи — бронь</h4><p>Шанхайский музей и многие топ-точки — бесплатно, но <b>по предварительной брони</b> (часто через WeChat-мини-приложение). Бронируйте за день-два.</p></div>
+      <div class="tip"><span class="tip-icon">🌃</span><h4>Бунд вечером</h4><p>Подсветка Пудуна — примерно до 22:00–23:00. Лучший вид — с набережной Бунда или с бара-террасы. Паромчик через Хуанпу дешевле туристического круиза.</p></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══════════ ПРАКТИКА ═══════════ -->
+<section id="practical" class="region">
+  <div class="region-head">
+    <div class="region-title-wrap">
+      <span class="region-zh" style="color:var(--paper)">出行</span>
+      <span class="region-name">Практика</span>
+    </div>
+    <div class="region-meta">Что критично знать<br>до поездки в Китай</div>
+  </div>
+  <p class="region-tagline">Китай технически устроен иначе, чем привычные направления: свой интернет, свои платёжные системы, свои приложения. Подготовка решает почти всё.</p>
+
+  <div class="practical-grid">
+    <div class="pcard">
+      <div class="pcard-zh">网</div>
+      <h4>Интернет и VPN</h4>
+      <ul>
+        <li><b>Google, WhatsApp, Instagram, Telegram заблокированы.</b> Нужен VPN, установленный ДО въезда (в Китае их сайты недоступны).</li>
+        <li>Поставьте 1–2 проверенных VPN заранее и проверьте, что работают.</li>
+        <li>Карты Google не работают — используйте <b>Apple Maps</b> или китайские (Amap/Baidu).</li>
+        <li>eSIM с роумингом другой страны иногда обходит блокировки без VPN.</li>
+      </ul>
+    </div>
+    <div class="pcard">
+      <div class="pcard-zh">付</div>
+      <h4>Оплата</h4>
+      <ul>
+        <li><b>Наличные почти не используются.</b> Всё — через QR: Alipay и WeChat Pay.</li>
+        <li>Оба приложения теперь <b>привязывают иностранные карты</b> (Visa/Mastercard) — настройте заранее.</li>
+        <li>Держите немного наличных юаней на крайний случай и мелочи.</li>
+        <li>Карты Visa/Mastercard напрямую принимают редко — только в крупных отелях.</li>
+      </ul>
+    </div>
+    <div class="pcard">
+      <div class="pcard-zh">签</div>
+      <h4>Виза / безвиз</h4>
+      <ul>
+        <li>Для граждан Беларуси действует <b>безвизовый въезд</b> по соглашению — уточните актуальный срок и условия перед поездкой.</li>
+        <li>Правила меняются — проверяйте на момент покупки билетов на сайте посольства.</li>
+        <li>Загранпаспорт действителен 6+ месяцев, обратный билет и бронь отеля на руках.</li>
+      </ul>
+    </div>
+    <div class="pcard">
+      <div class="pcard-zh">车</div>
+      <h4>Транспорт между городами</h4>
+      <ul>
+        <li><b>Скоростные поезда (高铁)</b> — лучший способ: быстро, пунктуально, дёшево. Сеть огромная.</li>
+        <li>Билеты — на <b>Trip.com</b> или в приложении China Railway 12306, по паспорту.</li>
+        <li>На вокзал — заранее: досмотр и проверка паспорта занимают время.</li>
+        <li>Внутренние перелёты — для дальних плеч (Юньнань, Сычуань-горы).</li>
+      </ul>
+    </div>
+    <div class="pcard">
+      <div class="pcard-zh">行</div>
+      <h4>Приложения в дорогу</h4>
+      <ul>
+        <li><b>Alipay / WeChat</b> — оплата, мини-приложения, переводы, такси, билеты.</li>
+        <li><b>Didi</b> (в Alipay) — такси, аналог Uber.</li>
+        <li><b>Amap / Apple Maps</b> — навигация (Google не работает).</li>
+        <li><b>Trip.com</b> — поезда, отели, билеты в достопримечательности.</li>
+        <li><b>Переводчик</b> с офлайн-режимом и камерой (меню, таблички).</li>
+      </ul>
+    </div>
+    <div class="pcard">
+      <div class="pcard-zh">热</div>
+      <h4>Август: климат и толпы</h4>
+      <ul>
+        <li><b>Жара и влажность</b> на равнинах (Пекин, Шанхай, Гуйлинь, Чэнду) — 30°C+.</li>
+        <li><b>Прохладно</b> в высокогорье: Юньнань (16–26°), западная Сычуань (8–20°).</li>
+        <li>Пик внутреннего туризма (школьные каникулы) — бронируйте отели и билеты заранее.</li>
+        <li>Тайфуны на побережье (Шанхай) во второй половине августа — закладывайте гибкость.</li>
+        <li>Ранний старт (5–7 утра) спасает и от жары, и от толп.</li>
+      </ul>
+    </div>
+    <div class="pcard">
+      <div class="pcard-zh">康</div>
+      <h4>Здоровье и мелочи</h4>
+      <ul>
+        <li>Пейте бутилированную воду, из-под крана — нет.</li>
+        <li>Туалеты часто «азиатского» типа и без бумаги — носите салфетки и санитайзер.</li>
+        <li>Высота в Шангри-Ла (3200 м) — поднимайтесь постепенно.</li>
+        <li>Дикие грибы в Юньнани — только в ресторанах.</li>
+        <li>VPN + офлайн-карты + скриншоты броней — на случай нет связи.</li>
+      </ul>
+    </div>
+    <div class="pcard">
+      <div class="pcard-zh">语</div>
+      <h4>Язык</h4>
+      <ul>
+        <li>Английский почти не используется вне крупных отелей и топ-точек.</li>
+        <li>Сохраните адреса отелей и мест <b>иероглифами</b> для такси.</li>
+        <li>Переводчик с камерой — для меню и табличек незаменим.</li>
+        <li>Несколько фраз на путунхуа сильно располагают людей.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="zh">一路平安</span>
+  КИТАЙ · ПЕРВАЯ ПОЛОВИНА АВГУСТА 2026<br>
+  Юньнань · Гуйлинь · Чэнду · Пекин · Шанхай<br>
+  Проверяйте визовые правила, цены и расписания ближе к дате поездки
+</footer>
 
 <script>
-    const data = {
-        munich: {
-            events: [
-                {
-                    badge: 'badge-event',
-                    title: 'Munich Open Air Summer — Vivaldi «Времена года»',
-                    desc: 'Концерт во дворе фонтанов Резиденции под открытым небом. Одно из самых атмосферных летних мест Мюнхена — роскошный ренессансный двор, классика, всё бесплатно. Приходите заранее, места занимают быстро.',
-                    detail: '7 АВГУСТА · Brunnenhof, Residenz · 19:30 · Бесплатно'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Фестиваль фонтанов на Виктуалиенмаркт',
-                    desc: 'Ежегодный цеховой праздник мюнхенских садовников с 1638 года. Духовые оркестры на Viktualienmarkt, шествие и церемония в Hofbräuhaus. Абсолютно локальное событие, которое большинство туристов не замечает.',
-                    detail: '7 АВГУСТА · Viktualienmarkt · днём · Бесплатно'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Theatron Musiksommer — бесплатные концерты',
-                    desc: 'Амфитеатр у олимпийского озера, вмещает 2000 человек, вход всегда бесплатный. Летом каждые несколько дней — концерты разных жанров. Идеально для вечера с видом на башню BMW.',
-                    detail: 'АВГУСТ · Olympiapark · Бесплатно'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'free&easy Festival',
-                    desc: '18 дней бесплатных концертов, вечеринок, кабаре и политических дебатов на площадке Backstage — три крытые сцены и открытый двор. Один из лучших нишевых летних фестивалей города.',
-                    detail: 'АВГУСТ · Backstage · Бесплатно'
-                }
-            ],
-            must: [
-                {
-                    badge: 'badge-must',
-                    title: 'Мариенплац и Фрауэнкирхе',
-                    desc: 'Главная площадь, Новая Ратуша с глокеншпилем (в 11:00 и 12:00), башни Фрауэнкирхе с лифтом наверх за €7. Виды — 360°. Поднимитесь в башню утром до 10:00 — ни очередей, ни групп.',
-                    detail: 'Совет: поднимитесь в башню утром до 10:00 — ни очередей, ни групп.'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Английский сад и Eisbach',
-                    desc: 'Крупнейший городской парк мира — больше Центрального парка Нью-Йорка. Речная волна (Eisbach) с сёрферами — уникальный городской феномен, работает круглый год. Также есть зона для нудистского загара — это совершенно нормально для Мюнхена.',
-                    detail: 'Бесплатно · Nude sunbathing зона — совершенно нормально для Мюнхена'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Резиденция Виттельсбахов (Münchner Residenz)',
-                    desc: 'Крупнейший городской дворцовый комплекс Германии — 10 дворов, 130 залов. Антиквариум — один из красивейших ренессансных залов севернее Альп. Двор фонтанов для концертов — бесплатно.',
-                    detail: '€10 · Двор фонтанов для концертов — бесплатно'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Виктуалиенмаркт (Viktualienmarkt)',
-                    desc: 'Старейший продовольственный рынок города, работает каждый день. Не туристический сувенирный — реально живой рынок с пивным садом в центре. Лучшее время — раннее утро с 7:00.',
-                    detail: 'Пн–Сб · лучшее — раннее утро с 7:00'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Немецкий музей (Deutsches Museum)',
-                    desc: 'Крупнейший технический музей мира — подводная лодка, шахта, авиация. Половина зала — уникальные оригиналы. Рассчитывайте минимум на полдня.',
-                    detail: '€15 · Открыт с 9:00'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Пинакотеки',
-                    desc: 'Три музея рядом: Alte Pinakothek (старые мастера), Neue (XIX в.), Moderne (XX–XXI). В воскресенье — €1 за вход в каждый. Собрание Рубенса — одно из лучших в мире. Вы приезжаете в среду/четверг, так что скидка не действует, но музей стоит посетить.',
-                    detail: 'В воскресенье = €1 · Но вы приезжаете в среду/четверг'
-                }
-            ],
-            niche: [
-                {
-                    badge: 'badge-niche',
-                    title: 'Eisbach — городская волна',
-                    desc: 'Стоячая волна на канале в Английском саду. Местные сёрферы круглый год — феномен, который не встретишь больше нигде в мире. Прийти ранним утром, пока не набежала толпа.',
-                    detail: 'Бесплатно · Лучше ранним утром'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Район Хайдхаузен (Haidhausen)',
-                    desc: '«Французский квартал» — тихие улицы 1870-х, независимые кофейни, винные бары, антикварные магазины. Альтернатива туристическому центру. Улица Wörthstraße — визитная карточка.',
-                    detail: 'Wörthstraße — визитная карточка'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Мюнхенский трамвай #19',
-                    desc: 'Один из старейших городских маршрутов — проезд сквозь районы, которые не попадают в путеводители: Максимилианштрассе, Хайдхаузен, Остбанхоф. Туристический автобус наоборот. Цена обычного билета.',
-                    detail: 'Цена обычного билета — пройдёт весь маршрут'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Шванталерхёэ (Kreativquartier)',
-                    desc: 'Бывшая промзона, ставшая модным креативным кластером с кофейнями, галереями и уличным искусством, особенно впечатляют граффити под мостом Доннерсбергер.',
-                    detail: 'Под мостом Доннерсбергер — граффити'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Хофгартен (Hofgarten)',
-                    desc: 'Тихие исторические сады во внутренних дворах Старого города, скрытые за фасадами. Идеальное место для короткой передышки в тени.',
-                    detail: 'Бесплатно'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Мюллеровские народные бани (Müllersches Volksbad)',
-                    desc: 'Одно из старейших общественных крытых банных заведений Европы с прекрасной архитектурой в стиле модерн.',
-                    detail: 'Müllersches Volksbad'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Кладбище Waldfriedhof',
-                    desc: 'Лесное кладбище с уникальной архитектурой рубежа XIX–XX вв. Тихое место с деревьями и искусством — нет ни одного туриста. Похоронен Макс Планк и другие.',
-                    detail: 'Похоронен Макс Планк и другие'
-                }
-            ],
-            food: [
-                {
-                    badge: 'badge-food',
-                    title: 'Hofbräuhaus',
-                    desc: 'Да, это туристическое место — но это и легенда. Не бойтесь зайти: внутри есть залы для местных. Литровая кружка, Weißwurst с горчицей и брецелем — обязательный ритуал.',
-                    detail: 'Туристическое, но аутентичное — обязательно к посещению'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Weißwurst на Viktualienmarkt',
-                    desc: 'Утренняя белая телячья колбаска с пивом — это баварская классика. Weißwurst едят только до 12:00. Горчица — сладкая. Пиво в 9 утра — норма. Лучшая белая колбаска — у стойки Standl 21.',
-                    detail: 'Лучшая белая колбаска — у стойки Standl 21'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Wirtshaus in der Au',
-                    desc: 'Лучшие кнедли города — и пивоварня с нефильтрованным Dunkel прямо на месте. Не туристическое, живые местные. В квартале Ау у реки. Столик лучше резервировать.',
-                    detail: 'Столик лучше резервировать'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Пивной сад Augustiner-Keller',
-                    desc: '5000 мест под каштанами — один из старейших и самых любимых пивных садов горожан, не туристов. Пиво прямо из деревянной бочки. Разница с Hofbräuhaus — разительная.',
-                    detail: 'Arnulfstraße 52 · вечером до 23:00'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Dallmayr — гастрономический универмаг',
-                    desc: 'Легендарный деликатесный магазин на Диенерштрассе с 1700 года. Кофе, паштеты, баварские сыры — можно просто зайти и насмотреться. Буфет наверху — отличный обед.',
-                    detail: 'Буфет наверху — отличный обед'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Schmalznudel — «Пончики на рассвете»',
-                    desc: 'Крошечная пекарня у рынка, открывается в 5 утра. Schmalznudeln — мюнхенские пончики в жире. Очередь есть всегда, ждать 5 минут. Необъяснимо хорошо. Только наличные.',
-                    detail: 'Prälat-Zistl-Str. 8 · только наличные'
-                }
-            ],
-            outside: [
-                {
-                    badge: 'badge-out',
-                    title: 'Нойшванштайн (Neuschwanstein)',
-                    desc: '2ч на поезде. Да, все знают, но летним утром в 7:30 у ворот — это другой опыт. Ключевой лайфхак: купите билеты онлайн за 2 дня — они разбираются мгновенно. Поезд Мюнхен–Фюссен €25 туда-обратно, замок €18.',
-                    detail: 'Поезд Мюнхен–Фюссен €25 туда-обратно · Замок €18'
-                },
-                {
-                    badge: 'badge-out',
-                    title: 'Штарнбергское озеро (Starnberger See)',
-                    desc: '35 минут на S-Bahn S6. Баварские Альпы в отражении, купание, паромы между деревнями. Менее известно чем Кимзее, более доступно. Чистейшая вода. Входит в зону A/B городского транспорта.',
-                    detail: 'Входит в зону A/B городского транспорта'
-                },
-                {
-                    badge: 'badge-out',
-                    title: 'Регенсбург + Вальхалла',
-                    desc: '1.5ч на поезде. Средневековый центр UNESCO, 12-арочный мост 1135 года, Баварская Вальхалла — греческий храм-пантеон над Дунаем с бюстами великих германцев. Один из самых сохранившихся средневековых городов Германии и почти без туристов.',
-                    detail: '1.5ч на поезде · Красивейший средневековый город'
-                },
-                {
-                    badge: 'badge-out',
-                    title: 'Гармиш-Партенкирхен + Цугшпитце',
-                    desc: '1.5ч на поезде. Самая высокая точка Германии (2962м), фуникулёр. Можно купаться в горном озере Айбзее у подножия — бирюзовая вода, воздух +15°. Цугшпитце ~€60, стоит каждого евро.',
-                    detail: 'Цугшпитце ~€60 · Стоит каждого евро'
-                }
-            ],
-            tips: [
-                {
-                    badge: 'badge-tip',
-                    title: 'CityTourCard или IsarCard',
-                    desc: 'На 2 дня — CityTourCard (€28) включает весь транспорт M-зоны + скидки в 80+ музеях и ресторанах. Окупается за 3 поездки.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Bayern-Ticket',
-                    desc: '€29 на 1 человека или €52 на 5 — весь день по всей Баварии на региональных поездах. Идеально для поездки на озёра или в Нойшванштайн.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Своя еда в пивных садах',
-                    desc: 'В большинстве баварских пивных садов официально разрешено приносить свою еду (Brotzeit), но пиво покупать только там. Экономит до 50% на еде.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Купание в Изаре — бесплатно',
-                    desc: 'Река Изар прямо в городе. Есть специальные зоны для купания (Flaucher, Tierpark-Abschnitt). Чистейшая горная вода, и это совершенно нормально для Мюнхена.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Аэропорт: S-Bahn',
-                    desc: 'S-Bahn S1/S8 до центра — €13.60, 40 мин. Такси ~€70. S-Bahn — оптимум.'
-                }
-            ]
-        },
-        barcelona: {
-            events: [
-                {
-                    badge: 'badge-event',
-                    title: 'Brunch Electronik Festival 2026',
-                    desc: 'Три дня электронной музыки у моря: Eric Prydz, Paul Kalkbrenner, Jamie Jones, Deborah de Luca, Floating Points Live, Jeff Mills, Seth Troxler, CamelPhat. 8 августа — второй день фестиваля. Дневной формат (15:00–3:00), sea breeze, фудкорт, детская зона. Билеты онлайн заранее — walkup не продаются.',
-                    detail: '7–9 АВГУСТА · Parc del Fòrum · €70–130 · Билеты онлайн'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Festival del Grec / Barcelona Summer Festival',
-                    desc: '200+ концертов по 6 знаковым площадкам: Palau de la Música, Teatro Grec на Монжуике, Tarantos (фламенко). Август — финальная часть. Проверьте программу на met.barcelona.cat.',
-                    detail: 'Август–Сентябрь · Разные цены'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Барселона — Мировая столица архитектуры 2026',
-                    desc: 'Статус UNESCO на весь год. 1500+ мероприятий — выставки, туры, открытые дни в зданиях, которые обычно закрыты. Большинство бесплатно. Павильон Мис ван дер Роэ: первое воскресенье каждого месяца — бесплатный вход (8 августа!).',
-                    detail: '8 августа = первое воскресенье = БЕСПЛАТНО в павильон Мис ван дер Роэ'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Ночной сапсерфинг',
-                    desc: 'До конца августа можно покататься на светящихся сапбордах у пляжа Барселонета, отличный вариант для вечера.',
-                    detail: 'До конца августа · Пляж Барселонета'
-                }
-            ],
-            must: [
-                {
-                    badge: 'badge-must',
-                    title: 'Саграда Фамилия',
-                    desc: 'Билеты только онлайн заранее — в августе за 2–3 недели. Лайфхак: берите билет с башнями (Nativity или Passion side) — вид сверху другой мир. Утренний свет (9–11) в нефе — лучшее время.',
-                    detail: '€26–38 · Обязательно + башня'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Парк Гуэль',
-                    desc: 'Основная монументальная зона — по билетам (€10). Но остальная часть парка — бесплатно и без туристов. Ранним утром (8:00 открытие) — практически пустой. Верхняя часть парка бесплатна — виды лучше.',
-                    detail: 'Верхняя часть парка бесплатна — виды лучше'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Готический квартал и Эль-Борн',
-                    desc: 'Готика — Барселонский Собор, Roman ruins под городом (MUHBA). Эль-Борн — самый атмосферный район: Basílica Santa Maria del Mar, крытый рынок Борн, тапас-бары.',
-                    detail: 'MUHBA Roman ruins под Plaça del Rei — €7, стоит'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Монжуик: замок + фонтан',
-                    desc: 'Замок на холме — виды на порт и город. Фонтан Montjuïc: светомузыкальные шоу в пятницу и субботу с 21:30 — бесплатно. В воскресенье с 11:00 — тоже шоу.',
-                    detail: 'Фонтан по выходным · Фуникулёр на замок'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'La Pedrera (Casa Milà) + ночная версия',
-                    desc: 'Днём — стандартный осмотр. Но «La Pedrera Night Experience» (пт–сб до полуночи) с видом на Барселону с крыши, живой музыкой и бокалом cava — отдельное переживание.',
-                    detail: 'Day €28 · Night Experience €39'
-                }
-            ],
-            niche: [
-                {
-                    badge: 'badge-niche',
-                    title: 'Bunkers del Carmel — рассвет/закат',
-                    desc: 'Бункеры зенитной артиллерии Гражданской войны на холме — лучший незаплаченный вид на Барселону 360°. Местные сидят с вином и гитарой каждый вечер. Туристы тоже, но атмосфера сохраняется. Подъём ~25 мин пешком.',
-                    detail: 'Бесплатно · Подъём ~25 мин пешком'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Район Побленоу (Poblenou)',
-                    desc: 'Бывший промышленный район — теперь Barcelona\'s Brooklyn. Граффити, галереи в заводах, кофейни, начинающие рестораны. Rambla del Poblenou — местная Рамбла без туристов.',
-                    detail: 'Rambla del Poblenou — местная Рамбла без туристов'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Павильон Мис ван дер Роэ',
-                    desc: 'Один из главных шедевров модернизма — и посещают его единицы. Перестроен в 1986 году по оригинальным чертежам 1929-го. Первое воскресенье месяца — бесплатно (8 авг — первое воскресенье!).',
-                    detail: '8 августа = БЕСПЛАТНО · €12 в обычные дни'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Recinte Modernista de Sant Pau',
-                    desc: 'Больница в стиле Art Nouveau — архитектурный шедевр, менее известный чем Саграда, но не менее удивительный. UNESCO. Архитектора Домènech i Montaner — достойная альтернатива Гауди.',
-                    detail: '€18 · 10 мин от Саграды Фамилии'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Парк Лабиринт Орта',
-                    desc: 'Несправедливо забытый шедевр — романтичный парк с настоящим лабиринтом из живой изгороди. Туристы туда доезжают редко.',
-                    detail: 'Parc del Laberint d\'Horta'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Mirador del Passeig de l\'Escullera',
-                    desc: 'Секретная смотровая на 400-метровом волноломе. Только шум волн, море и закаты.',
-                    detail: 'Бесплатно'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Дворик Casa de l\'Ardiaca',
-                    desc: 'Тихий внутренний дворик с фонтаном и черепахами в сердце Готического квартала.',
-                    detail: 'Бесплатно'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Encants Vells — блошиный рынок',
-                    desc: 'Блошиный рынок под зеркальным навесом — металлическая конструкция отражает город сверху. Продаётся всё: антиквариат, электроника, одежда. Пн, Ср, Пт, Сб с 9:00.',
-                    detail: 'Пн, Ср, Пт, Сб с 9:00'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Культурный центр El Born',
-                    desc: 'Бывший чугунный рынок, внутри которого во время реконструкции нашли руины Барселоны 1700-х годов. Теперь это бесплатное открытое пространство.',
-                    detail: 'Бесплатно'
-                }
-            ],
-            food: [
-                {
-                    badge: 'badge-food',
-                    title: 'Рынок Santa Caterina',
-                    desc: 'Отличная альтернатива переполненной туристами Бокерии. Необычная волнистая крыша, шикарные локальные продукты и тапас-бары, где едят сами каталонцы. Цены вдвое ниже.',
-                    detail: 'Avinguda de Francesc Cambó 16 · Цены вдвое ниже Бокерии'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Пинчос в Эль-Борне',
-                    desc: 'Лучшие тапас-бары — вокруг Santa Maria del Mar. El Xampanyet (cava и анчоусы), Bar del Pla, El Asador de Aranda. Правило: не садитесь у стойки — там дешевле стоя.',
-                    detail: 'Стоя у стойки дешевле'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Вермут — утренний ритуал',
-                    desc: 'В воскресенье с 11:00 — всё Барселона на аперитиве с вермутом. Лучшие места: Bar Calders (Сант-Антони), Casa Mariona, El Xampanyet. Это не туристический ритуал — это жизнь.',
-                    detail: 'Воскресенье с 11:00 · Bar Calders, Casa Mariona'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Gelaaati di Marco',
-                    desc: 'Парадоксально лучшее мороженое в Барселоне — Gelaaati di Marco (итальянец на C/ de la Llibreteria). Без Instagram-хайпа, честный продукт.',
-                    detail: 'C/ de la Llibreteria'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'La Cova Fumada',
-                    desc: 'Пляжный район с ресторанами морепродуктов. Избегайте первой линии. La Cova Fumada (кэш онли, без вывески) — изобрела бомбас (картофельные шарики). Легенда.',
-                    detail: 'Carrer del Baluard 56 · Пн–Пт, открытие 9:00'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Bar Marsella',
-                    desc: 'Старейший бар, открыт с 1820. Absenta с мёдом. Находится в районе Готики.',
-                    detail: 'C/ dels Escudellers Blancs 1'
-                }
-            ],
-            outside: [
-                {
-                    badge: 'badge-out',
-                    title: 'Монсеррат (Montserrat)',
-                    desc: '1ч на поезде. «Зазубренная гора» с монастырём Бенедиктинцев и хором La Escolania (один из старейших в мире, поёт ежедневно в 13:00). Виды на Каталонию с рассвета — незабываемые.',
-                    detail: 'Поезд + фуникулёр FGC ~€32 · Монастырь бесплатно'
-                },
-                {
-                    badge: 'badge-out',
-                    title: 'Коста-Брава — каякинг',
-                    desc: 'Дикая скалистая береговая линия в 80 км. Однодневные каяк-туры уходят из Барселоны — 6-8ч, морские пещеры, бухты без дорог. Лучшее водное приключение в окрестностях.',
-                    detail: '6-8ч туры · Бронировать заранее'
-                },
-                {
-                    badge: 'badge-out',
-                    title: 'Ситжес (Sitges)',
-                    desc: '35 мин на поезде. Красивый приморский городок с отличным пляжем, архитектурой модернизма и неожиданно хорошим уровнем ресторанов. Менее известен, чем популярные курорты.',
-                    detail: '35 мин на поезде'
-                }
-            ],
-            tips: [
-                {
-                    badge: 'badge-tip',
-                    title: 'Barcelona Card vs T-Casual',
-                    desc: '3 дня = €50 — неограниченный транспорт + скидки в музеях. Окупается если посещаете 3+ платных места. Для большинства T-Casual (10 поездок, ~€12) — выгоднее.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Жара: режим августа',
-                    desc: '+32–35°C. Сиеста реальна: 14:00–17:00 — время кофе, мороженого и тени. Планируйте сложные маршруты до 13:00 и после 18:00. Пляж — утром или после 19:00.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Пляжи: не Barceloneta',
-                    desc: 'Barceloneta — переполнена. Mar Bella (с нудистской зоной, тише), Bogatell (чище, местные), Nova Icaria — более спокойные альтернативы в 10 мин.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Карманники — реальная проблема',
-                    desc: 'Лас-Рамблас, Бокерия, метро Л1/Л3 — зоны риска. Нательный кошелёк или разделите деньги. Не кладите ничего в задние карманы и рюкзак на спине в толпе.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Время еды (Tiempo de las comidas)',
-                    desc: 'Обед 14:00–16:00, ужин с 21:00 (реально). Если придёте в ресторан в 19:00 — скорее всего закрыто или пусто. Menu del día (обед) — 3 блюда за €12–15, лучшее соотношение цена/качество.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Питьевые фонтаны',
-                    desc: 'В городе сотни питьевых фонтанчиков с хорошей водой. Носите многоразовую бутылку — воду покупать не нужно.'
-                }
-            ]
-        },
-        prague: {
-            events: [
-                {
-                    badge: 'badge-event',
-                    title: 'Prague Proms 2026',
-                    desc: 'Сезонный фестиваль классики, джаза, киномузыки и кроссовера. Площадки: Obecní dům (Муниципальный дом), церковь Св. Симона и Иуды, The Loop Jazz Club. Международные исполнители + чешские музыканты.',
-                    detail: 'Август–Сентябрь · Разные площадки · Бесплатно и платно'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Letní Letná Festival',
-                    desc: 'Фестиваль нового цирка, уличного театра и акробатики в парке Летна. Стартует 12 августа красочным парадом по улочкам Старого Города! Один из крупнейших в Европе фестивалей нового цирка.',
-                    detail: '12 АВГУСТА · Letná Park · Старт парадом'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Respect Festival — мировая музыка',
-                    desc: 'Открытый фестиваль на острове Штваница за пределами исторического центра. Мировая музыка, альтернативные звуки, исчезающие традиции. Расслабленная атмосфера, международная аудитория.',
-                    detail: 'Лето 2026 · Štvanice Island'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Signal SPACE — постоянная световая выставка',
-                    desc: 'Новая постоянная инсталляция в старом рыночном зале Праги. Открылась к Signal Festival 2025, теперь работает постоянно. Современное световое искусство в историческом пространстве.',
-                    detail: 'Открыто 2025–2026 · Новинка'
-                },
-                {
-                    badge: 'badge-event',
-                    title: 'Выставка «Harry Potter: The Exhibition»',
-                    desc: 'С 6 августа в комплексе PVA Expo. Подлинные костюмы, реквизит и полное погружение в волшебный мир.',
-                    detail: 'PVA Expo · Билеты онлайн'
-                }
-            ],
-            must: [
-                {
-                    badge: 'badge-must',
-                    title: 'Пражский Град — ранним утром',
-                    desc: 'Открывается в 6:00 — территория бесплатна. Собор Св. Вита, Злата улочка, виды на Малу Страну. До 9 утра практически никого. Самый важный совет по всей Праге.',
-                    detail: 'Вход на территорию бесплатно · Интерьеры от €10'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Вышеград (Vyšehrad)',
-                    desc: 'Древняя крепость на скале с захватывающими видами и мистической атмосферой. Место, где, по легенде, была основана Прага. Кладбище с могилами Дворжака, Сметаны, Мухи. Вход на территорию бесплатный.',
-                    detail: 'Бесплатно · Тихо · 15 мин от центра на метро'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Астрономические часы (Orloj) + башня',
-                    desc: 'Часы работают 9:00–23:00, бой каждый час. Поднимитесь на башню Старой Ратуши — лучший вид на Старый Город. Совет: идите рано, не после обеда.',
-                    detail: 'Башня: €6 · Часы — бесплатно снаружи'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Карлов мост (Karlův Most)',
-                    desc: 'Знаковая достопримечательность, где лучше всего гулять на рассвете, пока не появились толпы. В 6–7 утра это мистическая пустая средневековая переправа.',
-                    detail: 'Бесплатно'
-                },
-                {
-                    badge: 'badge-must',
-                    title: 'Еврейский квартал (Josefov)',
-                    desc: 'Шесть синагог и старейшее действующее еврейское кладбище Европы. Жуткое и трогательное. Покупайте комбо-билет — дешевле входить в каждое место отдельно.',
-                    detail: 'Комбо-билет €20 · Внешние улицы бесплатно'
-                }
-            ],
-            niche: [
-                {
-                    badge: 'badge-niche',
-                    title: 'Speculum Alchemiae — подземная лаборатория алхимика',
-                    desc: 'Настоящая алхимическая лаборатория XVI века, обнаруженная во время наводнения 2002 года. Подземные туры по оригинальным камерам с оборудованием. Haštálská 1. Экскурсия ~€15, бронировать заранее.',
-                    detail: 'Haštálská 1 · Экскурсия ~€15 · Бронировать заранее'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Кинетическая голова Кафки (David Černý)',
-                    desc: '11-метровая скульптура из 42 вращающихся слоёв — иногда складывается в лицо Кафки, иногда распадается в абстракцию. Снаружи торгового центра Quadrio. Бесплатно, идите рано утром.',
-                    detail: 'V Štěpánské 633/49 · Бесплатно'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Невидимая выставка (Invisible Exhibition)',
-                    desc: 'Слепой гид ведёт вас через темноту — один час в абсолютной темноте, моделирующей мир незрячих. Трансформирующий опыт. ~€14, бронировать онлайн.',
-                    detail: '~€14 · Бронировать онлайн'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Sapa — вьетнамский рынок',
-                    desc: 'Один из крупнейших вьетнамских рынков за пределами Вьетнама. На окраине Праги — другой мир, другая жизнь. Ресторан там же — лучший фо в Центральной Европе и обед за €3.',
-                    detail: 'Метро + автобус ~30 мин от центра'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Холодная война — бункер под Вацлавской площадью',
-                    desc: 'Ядерное убежище под главной площадью Праги — хирургические комнаты, шпионаж, операторский зал. Интерактивный тур в духе Cold War. 400 CZK (~€16).',
-                    detail: '400 CZK (~€16) · Вацлавская пл.'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'DOX — Центр современного искусства',
-                    desc: 'Лучший в Праге центр contemporary art с инсталляциями в бывшем заводе. Квартал Голешовице — сам по себе нетуристический. Внутри — дирижабль-чердак Gulliver.',
-                    detail: 'Poupětova 1 · Голешовице'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Вилла Müller — Адольф Лоос, 2026',
-                    desc: 'Важнейший образец модернизма Адольфа Лооса только что вновь открылась после реставрации — теперь можно увидеть восстановленную крышу 1930-х и первый 3D digital twin здания.',
-                    detail: 'Экскурсия обязательна · Бронировать заранее'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'Улица Новый Свет (Nový Svět)',
-                    desc: 'Идиллическая улочка у Пражского Града с яркими домиками и спокойной деревенской атмосферой.',
-                    detail: 'Бесплатно'
-                },
-                {
-                    badge: 'badge-niche',
-                    title: 'U Sudu — подземный винный бар',
-                    desc: 'Уникальный винный бар, который выглядит как обычное заведение с улицы, но внутри представляет собой гигантский подземный средневековый лабиринт из пещер, уходящий глубоко под землю.',
-                    detail: 'Старый Город'
-                }
-            ],
-            food: [
-                {
-                    badge: 'badge-food',
-                    title: 'Polední menu — обеденное меню',
-                    desc: 'Будний день 11:00–14:00: суп + главное блюдо + напиток за 150–200 CZK (~€6–8). Как едят местные. Ищите рукописный знак «Polední menu» в окне. Лучший способ попробовать чешскую кухню.',
-                    detail: 'Ищите вывеску «Polední menu» в окне'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Lokál — пивная с непастеризованным Pilsner',
-                    desc: 'Гастропивная сеть, которую местные любят — Pilsner Urquell прямо из бочки, нефильтрованный. Свíčková на сливках, утопенец. Не туристическое, но известное. Lokál Dlouhá 33.',
-                    detail: 'Dlouhá 33 · Популярно — резервировать'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Kantýna — мясной ресторан в бывшем банке',
-                    desc: 'Мясной ресторан, открытый в величественном здании бывшего банка. Формат идеален: подходишь к витрине мясника, выбираешь нужный кусок сырого мяса (стейки, тартар, карпаччо), его взвешивают и готовят.',
-                    detail: 'Выбираешь сырое мясо — готовят при тебе'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Větrník — чешский «cream puff»',
-                    desc: 'Чешский заварной пирожок с двумя кремами (ванильный + карамельный) и карамельной глазурью. Лучшее место: Gardens Restaurant, спрятан в переулке у Вацлавской пл. Тихая легенда.',
-                    detail: 'Gardens Restaurant — тихая легенда'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'Pivovarský klub — сотни сортов пива',
-                    desc: 'Крафтовый пивной бар с более чем 50 кранами и 200 бутылками. Всё чешское. Кухня — традиционная. Подальше от туристических маршрутов в Жижков.',
-                    detail: 'Křižíkova 17 · Жижков'
-                },
-                {
-                    badge: 'badge-food',
-                    title: 'U Medvídků — пивоварня с 1466 года',
-                    desc: 'Одна из старейших пивоварен Праги — пиво варят на месте. X-Beer 33° — один из самых крепких лагеров в мире. Готическое здание в Старом Городе.',
-                    detail: 'Na Perštýně 7 · Старый Город'
-                }
-            ],
-            outside: [
-                {
-                    badge: 'badge-out',
-                    title: 'Кутна Гора (Kutná Hora)',
-                    desc: '1ч на поезде. Знаменитая Kostnice — часовня из человеческих костей (40 000+ скелетов). Плюс готический собор Св. Варвары — не уступает Нотр-Даму. Половина туристов не знает об этом городе.',
-                    detail: 'Поезд €5 · Костница €5 · Полдня'
-                },
-                {
-                    badge: 'badge-out',
-                    title: 'Телч (Telč) — UNESCO',
-                    desc: '2.5ч. Идеально сохранившийся ренессансный городок с одной из красивейших площадей Европы. Почти нет туристов несмотря на статус UNESCO. Лучший day-trip из Праги.',
-                    detail: '2.5ч · Почти нет туристов'
-                },
-                {
-                    badge: 'badge-out',
-                    title: 'Карлштейн (Karlštejn)',
-                    desc: '40 мин на поезде. Готический замок XIV века на скале — изначально хранилище коронных регалий. Красивее чем кажется на фото. Небольшая деревня у подножия.',
-                    detail: '40 мин · Поезд €3 · Замок €15'
-                }
-            ],
-            tips: [
-                {
-                    badge: 'badge-tip',
-                    title: 'CZK vs EUR',
-                    desc: 'Платите в кронах, не в евро — курс обмена в ресторанах и магазинах грабительский. Снимайте наличные в банкоматах ČSOB или Komerční banka.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Пиво дешевле воды',
-                    desc: 'Пиво в пивных — 40–60 CZK (~€1.6–2.4). Бутылированная вода в туристических кафе — иногда дороже.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Prague Card или обычный билет',
-                    desc: 'Prague Card (2 дня, €60) включает транспорт + 50+ музеев. Для 2 дней обычно не окупается — лучше отдельные билеты и суточная карточка транспорта (110 CZK).'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Трамвай #22 — лучший городской вид',
-                    desc: 'Проходит через Малу Страну и мимо всех главных достопримечательностей. Маршрут на уровне туристического автобуса, цена — €1.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Приложение PID Lítačka',
-                    desc: 'Скачайте для покупки билетов на все виды транспорта — не придется искать автоматы.'
-                },
-                {
-                    badge: 'badge-tip',
-                    title: 'Классическая музыка — дёшево',
-                    desc: 'Прага — один из лучших городов для живой классики за €10–25. Церкви, Obecní dům, Rudolfinum. Ищите на GoOut.cz или прямо у касс — нередко есть билеты в день концерта.'
-                }
-            ]
-        }
-    };
+function go(id) {
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 
-    let currentUser = 'user1';
-    let savedData = { user1: [], user2: [] };
-    try {
-        const stored = localStorage.getItem('eurotrip_dual');
-        if (stored) savedData = JSON.parse(stored);
-    } catch(e) {}
+function tab(region, name) {
+  var tabsWrap = document.getElementById(region + '-tabs');
+  if (!tabsWrap) return;
+  var tabs = tabsWrap.querySelectorAll('.tab');
+  tabs.forEach(function(t){ t.classList.remove('active'); });
 
-    function saveData() {
-        localStorage.setItem('eurotrip_dual', JSON.stringify(savedData));
-        renderRoutePanel();
-        updateAllPriorityButtons();
-    }
+  var contents = document.querySelectorAll('#' + region + ' .tab-content');
+  contents.forEach(function(c){ c.classList.remove('active'); });
 
-    function switchUser(user) {
-        currentUser = user;
-        document.getElementById('user1Btn').classList.toggle('active', user === 'user1');
-        document.getElementById('user2Btn').classList.toggle('active', user === 'user2');
-        updateAllPriorityButtons();
-    }
+  var labels = {
+    route:'Маршрут', main:'Главное', calm:'Тихие места', food:'Еда',
+    event:'События', tips:'Лайфхаки', nature:'Природа', skip:'Пропустить'
+  };
+  // some regions relabel calm -> Небанальное / Природа; match by data instead
+  var idx = ['route','main','calm','food','event','tips','nature','skip'];
+  // Activate by matching the onclick target name
+  tabs.forEach(function(t){
+    var oc = t.getAttribute('onclick') || '';
+    if (oc.indexOf("'" + name + "'") > -1) t.classList.add('active');
+  });
 
-    function togglePriority(city, cat, title, detail, badge, priority) {
-        const id = `${city}-${cat}-${title}`;
-        const userItems = savedData[currentUser];
-        const existingIndex = userItems.findIndex(i => i.id === id);
-        if (existingIndex > -1) {
-            if (userItems[existingIndex].priority === priority) {
-                userItems.splice(existingIndex, 1);
-            } else {
-                userItems[existingIndex].priority = priority;
-            }
-        } else {
-            userItems.push({ id, city, cat, title, detail, badge, priority });
-        }
-        saveData();
-    }
+  var target = document.getElementById(region + '-' + name);
+  if (target) target.classList.add('active');
+}
 
-    function removeItem(user, id) {
-        savedData[user] = savedData[user].filter(i => i.id !== id);
-        saveData();
-    }
-
-    let routeFilter = 'all';
-    function setRouteFilter(filter) {
-        routeFilter = filter;
-        document.querySelectorAll('#routeFilters button').forEach(b => b.classList.remove('active-filter'));
-        document.querySelector(`#routeFilters button[onclick="setRouteFilter('${filter}')"]`).classList.add('active-filter');
-        renderRoutePanel();
-    }
-
-    function renderRoutePanel() {
-        const container = document.getElementById('routeList');
-        const allIds = new Set();
-        savedData.user1.forEach(i => allIds.add(i.id));
-        savedData.user2.forEach(i => allIds.add(i.id));
-
-        if (allIds.size === 0) {
-            container.innerHTML = '<div class="route-empty">Пока ничего не выбрано. Нажимайте «Идем» или «Опционально» на карточках.</div>';
-            return;
-        }
-
-        const cityNames = { munich: 'Мюнхен', barcelona: 'Барселона', prague: 'Прага' };
-        const catNames = { events:'События', must:'Обязательное', niche:'Нишевое', food:'Еда', outside:'Окрестности', tips:'Советы' };
-
-        const findItem = (user, id) => savedData[user].find(i => i.id === id);
-        const items = [];
-        allIds.forEach(id => {
-            const u1 = findItem('user1', id);
-            const u2 = findItem('user2', id);
-            const anyItem = u1 || u2;
-            if (!anyItem) return;
-            const city = anyItem.city;
-            const cat = anyItem.cat;
-            const title = anyItem.title;
-            const detail = anyItem.detail;
-            const v1 = u1 ? u1.priority : null;
-            const v2 = u2 ? u2.priority : null;
-
-            let filterPass = true;
-            if (routeFilter === 'user1' && !v1) filterPass = false;
-            if (routeFilter === 'user2' && !v2) filterPass = false;
-            if (routeFilter === 'both' && !(v1 === 'must' && v2 === 'must')) filterPass = false;
-            if (routeFilter === 'conflict' && !((v1 === 'must' && v2 === 'optional') || (v1 === 'optional' && v2 === 'must'))) filterPass = false;
-            if (!filterPass) return;
-
-            const crossed = (v1 === 'must' && v2 === 'must');
-            const conflict = (v1 && v2 && v1 !== v2);
-            items.push({ id, city, cat, title, detail, v1, v2, crossed, conflict });
-        });
-
-        if (items.length === 0) {
-            container.innerHTML = '<div class="route-empty">Ничего не подходит под выбранный фильтр.</div>';
-            return;
-        }
-
-        const grouped = {};
-        items.forEach(item => {
-            if (!grouped[item.city]) grouped[item.city] = {};
-            if (!grouped[item.city][item.cat]) grouped[item.city][item.cat] = [];
-            grouped[item.city][item.cat].push(item);
-        });
-
-        let html = '';
-        for (const city of ['munich', 'barcelona', 'prague']) {
-            if (!grouped[city]) continue;
-            html += `<div class="route-group"><h4>${cityNames[city]}</h4>`;
-            for (const cat of ['events', 'must', 'niche', 'food', 'outside', 'tips']) {
-                if (!grouped[city][cat]) continue;
-                html += `<div style="margin-bottom:8px;"><em style="color:var(--muted);font-size:12px;">${catNames[cat]}</em>`;
-                grouped[city][cat].forEach(item => {
-                    const v1html = item.v1 ? `<span class="vote-badge ${item.v1==='must'?'vote-must':'vote-opt'}">П1: ${item.v1==='must'?'Идем':'Опц.'}</span>` : `<span class="vote-none">П1: —</span>`;
-                    const v2html = item.v2 ? `<span class="vote-badge ${item.v2==='must'?'vote-must':'vote-opt'}">П2: ${item.v2==='must'?'Идем':'Опц.'}</span>` : `<span class="vote-none">П2: —</span>`;
-                    const cssClass = item.crossed ? 'crossed' : (item.conflict ? 'conflict' : '');
-                    html += `<div class="route-item ${cssClass}">
-                        <div class="item-content">${item.title} ${item.detail ? '<br><small style="color:#6b6560">'+item.detail+'</small>' : ''}</div>
-                        <div class="votes">${v1html} ${v2html}</div>
-                        <span class="remove-item" onclick="removeItem('user1','${item.id}'); removeItem('user2','${item.id}');">✕</span>
-                    </div>`;
-                });
-                html += `</div>`;
-            }
-            html += `</div>`;
-        }
-        container.innerHTML = html;
-    }
-
-    function clearRoute() {
-        if (confirm('Очистить весь маршрут обоих пользователей?')) {
-            savedData = { user1: [], user2: [] };
-            saveData();
-        }
-    }
-
-    function exportRoute() {
-        const json = JSON.stringify(savedData, null, 2);
-        navigator.clipboard.writeText(json).then(() => alert('Маршрут скопирован в буфер обмена! Отправьте этот текст другому человеку или сохраните.')).catch(() => alert('Не удалось скопировать.'));
-    }
-
-    function importRoutePrompt() {
-        const json = prompt('Вставьте JSON маршрута:');
-        if (json) {
-            try {
-                const imported = JSON.parse(json);
-                if (imported.user1 && imported.user2) {
-                    savedData = imported;
-                    saveData();
-                    alert('Маршрут импортирован!');
-                } else {
-                    alert('Неверный формат. Ожидается объект с user1 и user2.');
-                }
-            } catch(e) { alert('Неверный JSON.'); }
-        }
-    }
-
-    function toggleRoutePanel() {
-        document.getElementById('routePanel').classList.toggle('open');
-    }
-
-    function updateAllPriorityButtons() {
-        document.querySelectorAll('.priority-btn').forEach(btn => {
-            const card = btn.closest('.card, .event-banner, .tip-card');
-            if (!card) return;
-            const city = card.closest('.city-section')?.id;
-            const cat = card.closest('.tab-content')?.id.replace(city+'-', '');
-            const titleEl = card.querySelector('h3, h4');
-            if (!city || !cat || !titleEl) return;
-            const title = titleEl.textContent.trim();
-            const id = `${city}-${cat}-${title}`;
-            const userItem = savedData[currentUser].find(i => i.id === id);
-            const isMustBtn = btn.classList.contains('must-btn');
-            btn.classList.remove('active-must', 'active-opt');
-            if (userItem) {
-                if (userItem.priority === 'must' && isMustBtn) btn.classList.add('active-must');
-                if (userItem.priority === 'optional' && !isMustBtn) btn.classList.add('active-opt');
-            }
-        });
-    }
-
-    function renderCity(city) {
-        Object.keys(data[city]).forEach(cat => {
-            const container = document.getElementById(city + '-' + cat);
-            if (!container) return;
-            let html = '';
-            const items = data[city][cat];
-            if (cat === 'events') {
-                html += '<div class="section-label">События</div>';
-                items.forEach(item => {
-                    html += `<div class="event-banner ${city==='munich'?'munich-ev':city==='prague'?'prague-ev':''}">
-                        <div class="ev-meta">${item.detail || ''}</div>
-                        <h3>${item.title}</h3>
-                        <p>${item.desc}</p>
-                        <div class="priority-toggle">
-                            <button class="priority-btn must-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}','must')">Идем</button>
-                            <button class="priority-btn opt-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}','optional')">Опционально</button>
-                        </div>
-                    </div>`;
-                });
-            } else if (cat === 'tips') {
-                html += '<div class="section-label">Лайфхаки и советы</div><div class="tips-grid">';
-                items.forEach(item => {
-                    html += `<div class="tip-card">
-                        <span class="tip-icon">💡</span>
-                        <h4>${item.title}</h4>
-                        <p>${item.desc}</p>
-                        <div class="priority-toggle">
-                            <button class="priority-btn must-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','','${item.badge}','must')">Идем</button>
-                            <button class="priority-btn opt-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','','${item.badge}','optional')">Опционально</button>
-                        </div>
-                    </div>`;
-                });
-                html += '</div>';
-            } else {
-                const catLabel = {must:'Обязательные места',niche:'Нишевое и нетуристическое',food:'Еда и напитки',outside:'Окрестности'}[cat] || '';
-                html += '<div class="section-label">'+catLabel+'</div><div class="cards">';
-                items.forEach(item => {
-                    html += `<div class="card">
-                        <span class="card-badge ${item.badge}">${item.badge.replace('badge-','').toUpperCase()}</span>
-                        <h3>${item.title}</h3>
-                        <p>${item.desc}</p>
-                        ${item.detail ? '<div class="card-detail"><span>'+item.detail+'</span></div>' : ''}
-                        <div class="priority-toggle">
-                            <button class="priority-btn must-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}','must')">Идем</button>
-                            <button class="priority-btn opt-btn" onclick="togglePriority('${city}','${cat}','${item.title.replace(/'/g,"\\'")}','${(item.detail||'').replace(/'/g,"\\'")}','${item.badge}','optional')">Опционально</button>
-                        </div>
-                    </div>`;
-                });
-                html += '</div>';
-            }
-            container.innerHTML = html;
-        });
-        updateAllPriorityButtons();
-    }
-
-    function showCity(city) {
-        document.querySelectorAll('.city-section').forEach(s => s.classList.remove('active'));
-        document.getElementById(city).classList.add('active');
-        document.querySelectorAll('.nav-city').forEach(n => {
-            n.classList.remove('munich', 'barcelona', 'prague');
-            if (n.textContent.trim().toLowerCase().includes(city)) n.classList.add(city);
-        });
-        switchTab(city, 'events');
-    }
-
-    function switchTab(city, tabName) {
-        const tabsContainer = document.getElementById(city + '-tabs');
-        if (!tabsContainer) return;
-        tabsContainer.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-        const tabTexts = { events:'События', must:'Обязательное', niche:'Нишевое', food:'Еда', outside:'Окрестности', tips:'Лайфхаки' };
-        tabsContainer.querySelectorAll('.tab').forEach(t => {
-            if (t.textContent.trim() === (tabTexts[tabName] || tabName)) t.classList.add('active');
-        });
-        const section = document.getElementById(city);
-        if (section) {
-            section.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            const target = document.getElementById(city + '-' + tabName);
-            if (target) target.classList.add('active');
-        }
-        updateAllPriorityButtons();
-    }
-
-    renderCity('munich');
-    renderCity('barcelona');
-    renderCity('prague');
-    renderRoutePanel();
-    updateAllPriorityButtons();
+// nav highlight on scroll
+var regions = ['yunnan','guilin','chengdu','beijing','shanghai','practical'];
+var navClass = {
+  yunnan:'on-yunnan', guilin:'on-guilin', chengdu:'on-chengdu',
+  beijing:'on-beijing', shanghai:'on-shanghai', practical:'on-practical'
+};
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (!e.isIntersecting) return;
+    var id = e.target.id;
+    document.querySelectorAll('.nav-item').forEach(function(n){ n.className = 'nav-item'; });
+    document.querySelectorAll('.nav-item').forEach(function(n){
+      var oc = n.getAttribute('onclick') || '';
+      if (oc.indexOf("'" + id + "'") > -1) n.classList.add(navClass[id]);
+    });
+  });
+}, { threshold: 0.12 });
+regions.forEach(function(id){
+  var el = document.getElementById(id);
+  if (el) obs.observe(el);
+});
 </script>
 </body>
 </html>
